@@ -1,6 +1,17 @@
 version: '3.11'
 
 services:
+  proxy:
+    image: caddy:2-alpine
+    restart: always
+    cap_add: [ NET_ADMIN ]
+    ports: [ 80:80, 443:443 ]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    env_file: [ .env ]
+
   postgres:
     container_name: postgres_hack
     image: postgres:latest
@@ -14,8 +25,7 @@ services:
       retries: 2
     volumes:
       - ./db-data:/var/lib/postgresql/dataS
-    ports:
-      - 5432:5432
+    expose: [ 5432 ]
   redis:
     container_name: redis_hack
     image: redis:latest
@@ -29,19 +39,24 @@ services:
       retries: 2
     volumes:
       - ./redis.conf:/etc/redis/redis.conf
-    ports:
-      - 6379:6379
+    expose: [ 6379 ]
+
+  frontend:
+    build: ./frontend
+    expose: [ 3000 ]
+    restart: unless-stopped
   backend:
-    container_name: backend_app
     restart: unless-stopped
     env_file:
       - backend/src/app.env
     depends_on:
       - postgres
       - redis
-    ports:
-      - 8080:8000
+    expose: [ 8000 ]
     build:
       context: backend/src
       dockerfile: Dockerfile
 
+volumes:
+  caddy_data:
+  caddy_config:
