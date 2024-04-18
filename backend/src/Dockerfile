@@ -15,8 +15,7 @@ WORKDIR /src
 
 COPY . .
 
-RUN mkdir -p ./logs
-
+RUN mkdir -p ./src/logs
 RUN python -m pip install --upgrade pip \
     pip install -r requirements/dev.txt
 
