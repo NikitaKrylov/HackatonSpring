@@ -49,6 +49,8 @@ services:
     restart: unless-stopped
     env_file:
       - backend/src/app.env
+    volumes:
+      - ./backend/src/logs:/backend/src/logs
     depends_on:
       - postgres
       - redis

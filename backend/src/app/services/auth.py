@@ -2,16 +2,17 @@ from datetime import datetime, timedelta
 import jwt
 from fastapi import HTTPException, Depends
 from starlette import status
-
 from app.repository.user import UserRepository
 from app.schemas.auth import TokenData
 from app.schemas.user import CreateUserDTO, UserOutWithPasswordDTO
+from app.shared.logs import get_logger
 from app.shared.settings import secure_settings, oauth2_scheme
-
 from app.shared.settings import pwd_context
 
 
 user_repository = UserRepository()
+
+logger = get_logger(__name__)
 
 
 def hash_password(password: str) -> str:
@@ -44,6 +45,7 @@ def verify_access_token(token: str):
             raise credentials_exception
         token_data = TokenData(user_id=user_id)
     except Exception:
+        logger.error("Cant verify access token", exc_info=True)
         raise credentials_exception
 
     return token_data
