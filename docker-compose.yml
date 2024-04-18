@@ -45,6 +45,7 @@ services:
     build: ./frontend
     expose: [ 3000 ]
     restart: unless-stopped
+    init: true
   backend:
     restart: unless-stopped
     env_file:
