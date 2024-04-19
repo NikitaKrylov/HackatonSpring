@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
 from app.repository.user import UserRepository
-from app.schemas.user import CreateUserDTO, UserOutDTO
-from app.services.auth import get_current_user
+from app.schemas.user import CreateUserDTO, UserOutDTO, UserRoleChangeDTO, UserOutWithRoleDTO
+from app.services.auth import get_current_user, get_current_user_with_role
 from app.services import auth
 from app.schemas.auth import Token
 
@@ -24,6 +24,11 @@ async def create_user(data: CreateUserDTO):
     return await auth.register_user(data)
 
 
-@router.post('/me', response_model=UserOutDTO | None)
-async def get_active_user(current_user=Depends(get_current_user)):
+@router.post('/me', response_model=UserOutWithRoleDTO | None)
+async def get_active_user(current_user=Depends(get_current_user_with_role)):
     return current_user
+
+
+@router.post('/roles')
+async def set_users_roles(data: list[UserRoleChangeDTO]):
+    await user_repository.set_roles(data)

@@ -36,10 +36,10 @@ async def root() -> dict[str, str]:
     return {"message": "Hello World"}
 
 
-@app.on_event('startup')
-async def startup():
-    await init_models()
-    print('database reseted')
+# @app.on_event('startup')
+# async def startup():
+#     await init_models()
+#     print('database reseted')
 
 
 if __name__ == '__main__':

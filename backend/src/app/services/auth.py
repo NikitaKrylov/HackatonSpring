@@ -4,7 +4,7 @@ from fastapi import HTTPException, Depends
 from starlette import status
 from app.repository.user import UserRepository
 from app.schemas.auth import TokenData
-from app.schemas.user import CreateUserDTO, UserOutWithPasswordDTO
+from app.schemas.user import CreateUserDTO, UserOutWithPasswordDTO, UserOutDTO, UserOutWithRoleDTO
 from app.shared.logs import get_logger
 from app.shared.settings import secure_settings, oauth2_scheme
 from app.shared.settings import pwd_context
@@ -77,10 +77,21 @@ async def auth_user(username: str, password: str):
     return user
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserOutDTO:
     token = verify_access_token(token)
 
     user = await user_repository.get_by_id(token.user_id)
+
+    if user is None:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, 'Не удалось авторизироваться')
+
+    return user
+
+
+async def get_current_user_with_role(token: str = Depends(oauth2_scheme)) -> UserOutWithRoleDTO:
+    token = verify_access_token(token)
+
+    user = await user_repository.get_by_id_with_role(token.user_id)
 
     if user is None:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, 'Не удалось авторизироваться')
