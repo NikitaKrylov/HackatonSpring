@@ -8,3 +8,46 @@ body {
     margin: 0;
     padding: 0;
 }
+
+//---переменные
+$black: #000;
+$dark-blue-100: rgba(22, 11, 55, 1);
+$dark-blue-90: rgba(46, 36, 77, 1);
+$dark-blue-80: rgba(68, 60, 95, 1);
+$dark-blue-70:rgba(68, 60, 95, 1);
+$dark-blue-60: rgba(131, 125, 148, 1);
+$dark-blue-50:rgba(208, 206, 215, 1);
+$dark-blue-20: rgba(243, 242, 244, 1);
+$dark-blue-10: rgba(251, 251, 253, 1);
+
+$egg-blue-100: rgba(124, 89, 233, 1);
+$egg-blue-90: rgba(151, 122, 237, 1);
+$egg-blue-80: rgba(177, 155, 242, 1);
+$egg-blue-70: rgba(204, 188, 246, 1);
+$egg-blue-60: rgba(240, 235, 253, 1);
+
+.Extrabold{
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.Medium {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.Semibold {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.Regular {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.Medium {
+    font-size: 10px;
+    font-weight: 500;
+}
+
