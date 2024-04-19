@@ -55,7 +55,8 @@ services:
     depends_on:
       - postgres
       - redis
-    expose: [ 8000 ]
+    ports:
+      - 8080:8000
     build:
       context: backend/src
       dockerfile: Dockerfile

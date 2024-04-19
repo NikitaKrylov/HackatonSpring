@@ -7,15 +7,11 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100
 
-RUN apt-get update && \
-    apt-get install -y curl && \
-    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src
 
 COPY ./requirements ./requirements
-RUN python -m pip install --upgrade pip \
-    pip install -r requirements/dev.txt
+RUN  pip install -r requirements/dev.txt
 
 RUN mkdir -p ./logs
 
