@@ -3,10 +3,9 @@ from typing import Iterable
 from app.persistence.sqlalc_models import Distance, Placement
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
+from app.schemas.distance import DistanceCreateDTO, DistanceOutDTO
 from app.schemas.filters import PlacementFilter
 from app.schemas.placement import (
-    DistanceCreateDTO,
-    DistanceOutDTO,
     PlacementCreateDTO,
     PlacementOutDTO,
 )
@@ -21,7 +20,7 @@ class PlacementRepository(SQLAlchemyRepository):
                 filter_data,
                 session,
                 PlacementOutDTO
-            )
+            ) # type: ignore
 
     async def create(self, data: PlacementCreateDTO):
         async with async_session() as session:
