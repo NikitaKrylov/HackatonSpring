@@ -1,13 +1,14 @@
-from typing import Type
+from typing import Any, Type
 
 from fastapi import HTTPException
 from pydantic import BaseModel
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import contains_eager, selectinload
 from starlette import status
 
 from app.repository.pg_repository import Base, async_session
+from app.schemas.filters import BaseFilterData
 
 
 class SQLAlchemyRepository:
@@ -40,12 +41,19 @@ class SQLAlchemyRepository:
 
         return out_schema.model_validate(_obj, from_attributes=True)
 
-    async def get_all_objects(self, session: AsyncSession, out_schema: Type[BaseModel], joins: list | None = None):
+    async def get_all_objects(self, session: AsyncSession, out_schema: Type[BaseModel], joins: list | None = None, eager: list[list[Any]] | None = None, filter_data: BaseFilterData | None = None):
         query = select(self.model)
 
         if joins is not None:
             for join in joins:
                 query = query.options(selectinload(join))
+
+        if eager:
+            for i in eager:
+                query = query.options(contains_eager(*i))
+
+        if filter_data:
+            query = query.filter_by(**filter_data.get_filters())
 
         result = await session.execute(query)
         return [out_schema.model_validate(i, from_attributes=True) for i in result.scalars().all()]
