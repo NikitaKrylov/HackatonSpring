@@ -1,11 +1,9 @@
 <script lang="ts">
     import type { Supply } from "$lib";
-    import { getContext } from "svelte";
-    import type { Writable } from "svelte/store";
     import Status from "$lib/components/Status.svelte";
     import { goto } from "$app/navigation";
 
-    let collapsed = getContext<Writable<boolean>>("collapsed");
+    let collapsed = false;
 
     const supplies: Supply[] = [
         { id: 0, date: "20 апреля", status: "Ожидает", stops: 5 },
@@ -15,9 +13,9 @@
     ];
 </script>
 
-<section>
+<section class:collapsed>
     <header>
-        <button on:click={() => ($collapsed = true)}>
+        <button on:click={() => (collapsed = !collapsed)}>
             <img src="/icons/collapse.svg" alt="Скрыть" />
         </button>
         <h2>Последние заявки</h2>
@@ -96,6 +94,22 @@
                 &:last-child {
                     padding-right: 22px;
                 }
+            }
+        }
+
+        &.collapsed {
+            width: 56px;
+            overflow-x: hidden;
+            table,
+            h2 {
+                visibility: hidden;
+                overflow-x: hidden;
+            }
+            * {
+                white-space: nowrap;
+            }
+            img {
+                transform: scaleX(-1);
             }
         }
     }
