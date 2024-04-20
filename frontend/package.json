@@ -33,6 +33,7 @@
     },
     "type": "module",
     "dependencies": {
-        "chart.js": "^4.4.2"
+        "chart.js": "^4.4.2",
+        "clipboard": "^2.0.11"
     }
 }
