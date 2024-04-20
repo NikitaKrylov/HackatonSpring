@@ -7,8 +7,10 @@
 </script>
 
 <a class:active={$page.url.pathname.startsWith(path)} href={path}>
-    <img src={`/icons/${icon}.svg`} alt="" />
-    <span>{name}</span>
+    <slot>
+        <img src={`/icons/${icon}.svg`} alt="" />
+        <span>{name}</span>
+    </slot>
 </a>
 
 <style lang="scss">
