@@ -34,3 +34,7 @@ class PurchaseFilter(BaseFilterData):
 
 class DistanceFilter(BaseFilterData):
     pass
+
+
+class OfferFilter(BaseFilterData):
+    pass
