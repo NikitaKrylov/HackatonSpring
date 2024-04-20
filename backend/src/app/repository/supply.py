@@ -8,14 +8,15 @@ from app.schemas.supply import SupplyOutDTO
 class SupplyRepository(SQLAlchemyRepository):
     model = Supply
 
+
     async def get_all(self, filter_data: SupplyFilter | None = None) -> list[SupplyOutDTO]:
         async with async_session() as session:
             return await self.get_all_objects(
+                filter_data=filter_data,
                 session,
                 SupplyOutDTO,
                 joins=[Supply.storage],
-                eager=[[Supply.offers, Offer.placement], [Supply.offers, Offer.product]],
-                filter_data=filter_data
+                eager=[[Supply.offers, Offer.placement], [Supply.offers, Offer.product]]
             )
 
     async def create(self, data: dict):

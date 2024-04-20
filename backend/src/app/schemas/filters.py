@@ -18,4 +18,8 @@ class BaseFilterData(BaseModel, ABC):
 
 class SupplyFilter(BaseFilterData):
     supply_status: SupplyStatus | None = None
+    id: int | None = None
 
+class PlacementFilter(BaseFilterData):
+    id: int | None = None
+    placement_type: str | None = None
