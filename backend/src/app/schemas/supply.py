@@ -13,8 +13,8 @@ class BaseProductDTO(BaseModel):
     name: str
     manufactor: str
     product_measure: str
-    product_amount: int
-    product_volume: int
+    product_amount: float
+    product_volume: float
     manufacture_date: datetime
     expiry_date: datetime
 

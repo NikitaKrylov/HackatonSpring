@@ -9,9 +9,8 @@ class BasePurchaseDTO(BaseModel):
     id_store: int
     id_product: int
     time_sale: datetime
-    product_cost: int
-    quantity_sold: int
-    category: str = ''
+    product_cost: float
+    quantity_sold: float
 
 class PurchaseOutDTO(BasePurchaseDTO):
     id: int

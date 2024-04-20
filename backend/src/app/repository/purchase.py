@@ -5,7 +5,7 @@ from app.persistence.sqlalc_models import Purchase
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
 from app.schemas.filters import PurchaseFilter
-from app.schemas.purchase import PurchaseOutDTO
+from app.schemas.purchase import PurchaseOutDTO, PurchaseCreateDTO
 
 
 class PurchaseRepository(SQLAlchemyRepository):
@@ -24,6 +24,17 @@ class PurchaseRepository(SQLAlchemyRepository):
         async with async_session() as session:
             pass
             # TODO написать
+
+    async def create_all(self, data: list[PurchaseCreateDTO]):
+        async with async_session() as session:
+            for i in data:
+                _obj = self.model(**i.model_dump())
+                session.add(_obj)
+            await session.commit()
+
+
+
+
 
     async def _get_categories_stat(self):
         async with async_session() as session:
