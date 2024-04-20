@@ -1,8 +1,7 @@
-from fastapi import Depends, HTTPException
+from fastapi import HTTPException
 from starlette import status
 
-from app.services.auth import get_current_user_with_role
-from app.schemas.user import UserOutDTO, UserOutWithRoleDTO
+from app.schemas.user import UserOutWithRoleDTO
 
 
 def check_permissions(user: UserOutWithRoleDTO, *permissions):# -> Callable[..., Coroutine[Any, Any, UserOutWithRoleDTO]]:

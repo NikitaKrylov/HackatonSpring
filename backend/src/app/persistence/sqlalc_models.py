@@ -1,10 +1,17 @@
 from datetime import datetime
+from enum import Enum
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.repository.pg_repository import Base
 
+
+class SupplyStatus(Enum):
+    CANCELED = 'Отменен'
+    COMPLETED = 'Выполнен'
+    ACTIVE = 'Активный'
+    INPROCESSING = 'В обработке'
 
 class User(Base):
     __tablename__ = 'user'
@@ -85,6 +92,7 @@ class Supply(Base):
     storage: Mapped['Placement'] = relationship(uselist=False)
     offers: Mapped[list['Offer']] = relationship()
     created_at: Mapped[datetime] = mapped_column(default=datetime.now)
+    supply_status: Mapped[SupplyStatus] = mapped_column(default=SupplyStatus.INPROCESSING)
     # TODO сделать статус
 
 class Offer(Base):

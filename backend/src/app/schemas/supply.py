@@ -3,6 +3,8 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
+from app.persistence.sqlalc_models import SupplyStatus
+
 # -------------- Product ------------------
 
 class BaseProductDTO(BaseModel):
@@ -63,6 +65,7 @@ class SupplyOutDTO(BaseModel):
     storage_id: int
     offers: list[OfferOutDTO]
     created_at: datetime
+    supply_status: SupplyStatus
 
 
 

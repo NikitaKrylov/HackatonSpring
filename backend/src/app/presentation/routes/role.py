@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends
 
-from app.presentation.dependencies import check_permissions, get_current_user_with_role
+from app.presentation.dependencies import check_permissions
 from app.repository.role import RoleRepository
 from app.schemas.user import RoleChangeDTO, RoleCreateDTO, RoleOutDTO
+from app.services.auth import get_current_user_with_role
 
 router = APIRouter(prefix="/roles")
 
