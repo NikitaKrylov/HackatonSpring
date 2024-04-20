@@ -11,7 +11,7 @@
                 <div class="main__btns">
                     <SideBarEntry path="/dashboard" name="Главная" icon="home" />
                     <SideBarEntry path="/map" name="Карта" icon="map" />
-                    <SideBarEntry path="/supply" name="Заказы" icon="orders" />
+                    <SideBarEntry path="/supply" name="Заявки" icon="orders" />
                 </div>
                 <div class="line"></div>
                 <p class="Regular">Панель администрации</p>
