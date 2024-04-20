@@ -1,3 +1,4 @@
+from typing import Iterable
 from app.persistence.sqlalc_models import Distance, Placement
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
@@ -29,7 +30,7 @@ class PlacementRepository(SQLAlchemyRepository):
                 PlacementOutDTO
             )
 
-    async def create_all(self, data: list[PlacementCreateDTO]):
+    async def create_all(self, data: Iterable[PlacementCreateDTO]):
         async with async_session() as session:
             for placement in data:
                 _obj = self.model(**placement.model_dump())
@@ -49,7 +50,7 @@ class DistanceRepository(SQLAlchemyRepository):
                 joins=[Distance.source, Distance.target]
             )
 
-    async def create_all(self, data: list[DistanceCreateDTO]) -> None:
+    async def create_all(self, data: Iterable[DistanceCreateDTO]) -> None:
         async with async_session() as session:
             for distance in data:
                 _obj = self.model(**distance.model_dump())
