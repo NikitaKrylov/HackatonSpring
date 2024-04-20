@@ -19,6 +19,14 @@ class SupplyRepository(SQLAlchemyRepository):
                 eager=[[Supply.offers, Offer.placement], [Supply.offers, Offer.product]]
             )
 
+    async def get_supply_by_id(self, supply_id: int) -> SupplyOutDTO | None:
+        async with async_session() as session:
+            return await self.get_object(
+                session,
+                self.model.id == supply_id,
+                SupplyOutDTO
+            )
+
     async def create(self, data: dict):
         async with async_session() as session:
             pass
