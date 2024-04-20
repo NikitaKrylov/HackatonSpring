@@ -19,3 +19,4 @@ async def get_all_purchases(filter_data: PurchaseFilter = Depends(PurchaseFilter
 async def test_category_stat(category: str):
     return await purchase_repository.get_purches_stats(category)
 
+

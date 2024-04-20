@@ -1,9 +1,8 @@
+import operator
+import random
+
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import networkx as nx
-import random
-import operator
 from sklearn.cluster import KMeans
 
 
@@ -292,3 +291,6 @@ async def get_routes(from_point_id, point_ids, points_json, routes_json, num_tru
                             routes_json=routes_json)
         ans.append([from_point_id] + [item.to_point.id for item in best_gen.productOrders] + [from_point_id])
     return ans
+
+
+

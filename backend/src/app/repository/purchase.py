@@ -62,3 +62,32 @@ class PurchaseRepository(SQLAlchemyRepository):
             'turnover': await self._get_turnover_per_last_week_by_category(category),
             'categories': await self._get_categories_stat()
         }
+
+    async def get_all_mapped(self):
+        async with async_session() as session:
+            query = """SELECT purchase.time_sale, purchase.product_cost, purchase.quantity_sold,
+            product.name, product.manufactor, product.product_measure, product.product_amount, product.product_volume, product.manufacture_date, product.expiry_date, product.category FROM purchase JOIN product ON purchase.id_product = product.id"""
+            rez = await session.execute(text(query))
+
+            data = {
+                'time_sale': [],
+                'product_cost': [],
+                'quantity_sold': [],
+                'name': [],
+                'manufactor': [],
+                'product_measure': [],
+                'product_amount': [],
+                'product_volume': [],
+                'manufacture_date': [],
+                'expiry_date': [],
+                'category': []
+            }
+
+            for row in rez.all():
+                for index, key in enumerate(data.keys()):
+                    data[key].append(row[index])
+
+            return data
+
+
+
