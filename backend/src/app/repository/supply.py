@@ -20,3 +20,7 @@ class SupplyRepository(SQLAlchemyRepository):
             pass
             #TODO написать создание поставки
 
+
+
+
+

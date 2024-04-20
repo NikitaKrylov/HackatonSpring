@@ -7,8 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from starlette import status
 
-
-from app.repository.pg_repository import Base
+from app.repository.pg_repository import Base, async_session
 
 
 class SQLAlchemyRepository:
@@ -55,4 +54,13 @@ class SQLAlchemyRepository:
         stmp = update(self.model).where(expression).values(**data.model_dump())
         await session.execute(stmp)
         await session.commit()
+
+
+    async def get_all_ids(self) -> list[int]:
+        async with async_session() as session:
+            query = select(self.model.id)
+            result = await session.execute(query)
+            return [i[0] for i in result.all()]
+
+
 
