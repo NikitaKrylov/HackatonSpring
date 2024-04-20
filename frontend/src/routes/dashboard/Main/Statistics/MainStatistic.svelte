@@ -12,7 +12,7 @@
 <style lang="scss">
     main{
         margin-top: 18px;
-        max-width: 724px;
+        max-width: 740px;
         padding: 22px;
         border: 1px solid var(--dark-blue-50);
         border-radius: 35px;

@@ -13,7 +13,7 @@
 
 <style lang="scss">
     section{
-        max-width: 232px;
+        max-width: 260px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -21,8 +21,9 @@
 
     .text p{
         &:first-child{
+            font-size: 22px;
             font-weight: 600;
-            line-height: 26.4px;
+            line-height: 24.4px;
         }
 
         &:last-child{
@@ -38,13 +39,14 @@
         font-weight: 600;
 
         .num {
-            font-size: 30px;
+            font-size: 26px;
             font-weight: 800;
         }
 
         .perc{
+            font-size: 16px;
             display: inline-block;
-            padding: 4px 12px;
+            padding: 4px 10px;
             color: rgba(54, 207, 29, 1);
             background-color: rgba(232, 249, 242, 1);
             border-radius: 100px;
