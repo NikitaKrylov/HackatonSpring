@@ -7,6 +7,7 @@ class SecureSettings(BaseSettings):
     algorithm: str
     secret_key: str
     backend_port: int
+    geocoder_api_key: str
 
 
 secure_settings = SecureSettings(_env_file='app.env')
