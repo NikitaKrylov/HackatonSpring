@@ -1,5 +1,7 @@
 <script lang="ts"></script>
 
-<section></section>
+<ul>
+    <li></li>
+</ul>
 
 <style lang="scss"></style>

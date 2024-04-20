@@ -13,7 +13,7 @@
 
 <style lang="scss">
     section{
-        max-width: 260px;
+        max-width: 14rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

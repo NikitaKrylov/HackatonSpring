@@ -1,4 +1,4 @@
-<script lang=ts>
+<script lang='ts'>
     import Categories from "./Categories/Categories.svelte";
     import Header from "./Header.svelte";
     import MainStatistic from "./Statistics/MainStatistic.svelte";
@@ -20,10 +20,10 @@
 
 <style lang="scss">
     main {
-        width: 100%;
+        flex: 1;
+        background-color: var(--white);
         display: flex;
         flex-direction: column;
-        background-color: var(--white);
         border-radius: 25px;
 
         padding: 35px 22px;
@@ -32,10 +32,11 @@
     .left-bar {
         display: flex;
         flex-direction: column;
-        min-width: 800px;
+        max-width: 45rem;
     }
 
     .wrapper{
+        max-width: 45.25rem;
         display: flex;
         justify-content: space-between;
         gap: 18px;

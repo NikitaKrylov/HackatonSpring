@@ -5,9 +5,9 @@
     <p>Ознакомьтесь с новыми заявками</p>
 </header>
 
-<style>
+<style lang="scss">
     header{
-        width: 100%;
+        max-width: 100%;
     }
     h3 {
         font-size: 26px;

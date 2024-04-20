@@ -13,7 +13,8 @@
 
 <style lang="scss">
     .card{
-        max-width: 250px;
+        font-size: 0.875;
+        max-width: 14rem;
         background: rgba(228, 248, 230, 1);
         border-radius: 35px;
         text-align: center;
@@ -22,12 +23,11 @@
 
     h3 {
         font-size: 1.2rem;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
     }
 
     p{
         display: inline-block;
-        margin-bottom: 10px;
     }
 
     .busy {
@@ -35,7 +35,7 @@
         justify-content: center;
         align-items: center;
         gap: 18px;
-
+        margin-bottom: 0.625rem;
         
     }
 </style>

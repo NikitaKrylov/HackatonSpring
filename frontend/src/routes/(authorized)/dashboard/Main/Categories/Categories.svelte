@@ -24,8 +24,7 @@
                 'rgba(206, 233, 255, 1)'
                 ],
                 hoverOffset: 4,
-                borderAlign: 'inner'
-            }]
+            }],
         },
         options: {
             responsive: true,
@@ -37,7 +36,7 @@
                     display: false,
                     text: ''
                 }
-            }
+            },
         },
     });
     });

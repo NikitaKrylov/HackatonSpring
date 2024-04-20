@@ -11,7 +11,6 @@
     main {
         display: flex;
         gap: 26px;
-        justify-content: space-between;
         height: 100%;
         padding: 30px 26px 30px;
 
