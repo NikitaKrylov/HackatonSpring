@@ -28,3 +28,6 @@ class PlacementFilter(BaseFilterData):
 class ProductFilter(BaseFilterData):
     pass
 
+
+class PurchaseFilter(BaseFilterData):
+    pass

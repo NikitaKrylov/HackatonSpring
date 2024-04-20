@@ -48,11 +48,12 @@ class SQLAlchemyRepository:
         return out_schema.model_validate(_obj, from_attributes=True)
 
     async def get_all_objects(self,
-                              filter_data: BaseFilterData | None = None,
+                              filter_data: BaseFilterData | None,
                               session: AsyncSession,
                               out_schema: Type[BaseModel],
                               joins: list | None = None,
-                              eager: list[list[Any]] | None = None):
+                              eager: list[list[Any]] | None = None
+                              ):
         query = select(self.model)
 
         if joins is not None:
