@@ -2,8 +2,9 @@
 import random
 from random import random
 
-from app.repository.placement import PlacementRepository
+from app.repository.supply import SupplyRepository
 from app.schemas.filters import PlacementFilter
+from backend.src.app.repository.placement import PlacementRepository
 
 
 def generate_supply(id: int):
@@ -30,7 +31,7 @@ def generate_offer(supply: dict, storage_id: int):
                             for i in range(1, random.randint(2, 6))]
     return supply
 
-def generate_supplies(count: int):
+async def generate_supplies(count: int):
     data = [generate_supply(i) for i in range(1, count + 1)]
     # TODO: add CRUD for models
     return data
