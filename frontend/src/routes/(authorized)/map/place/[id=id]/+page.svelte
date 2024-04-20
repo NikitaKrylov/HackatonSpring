@@ -10,7 +10,7 @@
 
 <section>
     <header>
-        <a href="/map">
+        <a href="/map" on:click={() => ($selected_places = [])}>
             <img src="/icons/arrow_left.svg" alt="Назад" />
             <span>Назад</span>
         </a>
