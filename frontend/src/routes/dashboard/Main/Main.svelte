@@ -37,5 +37,6 @@
     .wrapper{
         display: flex;
         justify-content: space-between;
+        gap: 18px;
     }
 </style>

@@ -14,7 +14,7 @@
 
 <style lang="scss">
     section{
-        max-width: 740px;
+        max-width: 100%;
         text-align: right;
 
         button {
