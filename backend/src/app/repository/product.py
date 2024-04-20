@@ -11,9 +11,9 @@ class ProductRepository(SQLAlchemyRepository):
     async def get_all(self, filter_data: ProductFilter | None = None) -> list[ProductOutDTO]:
         async with async_session() as session:
             return await self.get_all_objects(
+                filter_data,
                 session,
-                ProductOutDTO,
-                filter_data=filter_data
+                ProductOutDTO
             )
 
     async def create(self, data: ProductCreateDTO) -> ProductOutDTO:

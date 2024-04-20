@@ -12,7 +12,7 @@ class SupplyRepository(SQLAlchemyRepository):
     async def get_all(self, filter_data: SupplyFilter | None = None) -> list[SupplyOutDTO]:
         async with async_session() as session:
             return await self.get_all_objects(
-                filter_data=filter_data,
+                filter_data,
                 session,
                 SupplyOutDTO,
                 joins=[Supply.storage],
