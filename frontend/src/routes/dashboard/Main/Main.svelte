@@ -1,5 +1,6 @@
 <script lang=ts>
     import Header from "./Header.svelte";
+    import MainStatistic from "./Statistics/MainStatistic.svelte";
     import Stores from "./Stores.svelte";
 
 </script>
@@ -7,6 +8,7 @@
 <main>
     <Header/>
     <Stores/>
+    <MainStatistic/>
 </main>
 
 <style lang="scss">
