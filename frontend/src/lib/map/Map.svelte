@@ -37,12 +37,7 @@
 
     onMount(async () => {
         if (map === undefined) {
-            while (true) {
-                try {
-                    await ymaps3.ready;
-                    break;
-                } catch {}
-            }
+            await ymaps3.ready;
         }
 
         map = new ymaps3.YMap(mapElem, {
