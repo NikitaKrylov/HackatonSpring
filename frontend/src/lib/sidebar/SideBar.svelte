@@ -4,7 +4,9 @@
 
 <div class="sidebar">
     <div class="top">
-        <div class="logo">Logist 52</div>
+        <div class="logo">
+            <img src="/logo.png" alt=""/>
+        </div>
         <div class="sidebar__main">
             <section class="sidebar-menu">
                 <p class="Regular">Основное</p>
@@ -50,6 +52,9 @@
     .logo {
         font-weight: 900;
         font-size: 24px;
+        > img {
+            width: 122px;
+        }
     }
 
     .sidebar__main {
