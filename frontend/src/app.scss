@@ -19,28 +19,31 @@ body {
 }
 
 //---переменные
-$black: #000;
-$dark-blue-100: rgba(22, 11, 55, 1);
-$dark-blue-90: rgba(46, 36, 77, 1);
-$dark-blue-80: rgba(68, 60, 95, 1);
-$dark-blue-70:rgba(68, 60, 95, 1);
-$dark-blue-60: rgba(131, 125, 148, 1);
-$dark-blue-50:rgba(208, 206, 215, 1);
-$dark-blue-20: rgba(243, 242, 244, 1);
-$dark-blue-10: rgba(251, 251, 253, 1);
+:root {
+--black: #000;
+--white: #fff;
+--dark-blue-100: rgba(22, 11, 55, 1);
+--dark-blue-90: rgba(46, 36, 77, 1);
+--dark-blue-80: rgba(68, 60, 95, 1);
+--dark-blue-70:rgba(68, 60, 95, 1);
+--dark-blue-60: rgba(131, 125, 148, 1);
+--dark-blue-50:rgba(208, 206, 215, 1);
+--dark-blue-20: rgba(243, 242, 244, 1);
+--dark-blue-10: rgba(251, 251, 253, 1);
 
-$egg-blue-100: rgba(124, 89, 233, 1);
-$egg-blue-90: rgba(151, 122, 237, 1);
-$egg-blue-80: rgba(177, 155, 242, 1);
-$egg-blue-70: rgba(204, 188, 246, 1);
-$egg-blue-60: rgba(240, 235, 253, 1);
+--egg-blue-100: rgba(124, 89, 233, 1);
+--egg-blue-90: rgba(151, 122, 237, 1);
+--egg-blue-80: rgba(177, 155, 242, 1);
+--egg-blue-70: rgba(204, 188, 246, 1);
+--egg-blue-60: rgba(240, 235, 253, 1);
 
-$blue-100: rgba(71, 146, 206, 1);
-$blue-90: rgba(109, 168, 216, 1);
-$blue-80: rgba(145, 190, 226, 1);
-$blue-70: rgba(163, 200, 230, 1);
-$blue-60: rgba(163, 200, 230, 1);
-$blue-50: rgba(227, 239, 248, 1);
+--blue-100: rgba(71, 146, 206, 1);
+--blue-90: rgba(109, 168, 216, 1);
+--blue-80: rgba(145, 190, 226, 1);
+--blue-70: rgba(163, 200, 230, 1);
+--blue-60: rgba(163, 200, 230, 1);
+--blue-50: rgba(227, 239, 248, 1);
+}
 
 .Extrabold{
     font-size: 26px;
@@ -67,3 +70,11 @@ $blue-50: rgba(227, 239, 248, 1);
     font-weight: 500;
 }
 
+//---сброс стилей
+button{
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
