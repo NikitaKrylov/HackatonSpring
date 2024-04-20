@@ -16,6 +16,7 @@
 <style lang="scss">
     a {
         display: flex;
+        align-items: center;
         text-align: center;
         gap: 18px;
         color: var(--dark-blue-90);
