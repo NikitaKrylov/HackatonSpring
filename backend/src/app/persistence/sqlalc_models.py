@@ -54,6 +54,7 @@ class Placement(Base):
     name: Mapped[str]
     coord: Mapped[str]
     placement_type: Mapped[str]
+    address: Mapped[str]
 
 
 class Purchase(Base):
@@ -66,13 +67,6 @@ class Purchase(Base):
     time_sale: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     product_cost: Mapped[int]
     quantity_sold: Mapped[int]
-
-
-class ClientInfo(Base):
-    __tablename__ = 'client_info'
-
-    client_id: Mapped[int] = mapped_column(ForeignKey('placement.id'))
-    address: Mapped[str]
 
 
 class Distance(Base):
