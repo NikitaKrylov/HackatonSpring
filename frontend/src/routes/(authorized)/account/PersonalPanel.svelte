@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { logout } from "$lib/auth";
 </script>
 
 <section>
@@ -25,33 +26,32 @@
                 <p>Почта</p>
                 <p>yyyoner@gmail.com</p>
             </li>
-            <li >
+            <li>
                 <p>Номер сотрудника</p>
                 <div class="copy">
                     <p class="num-employee">52000001</p>
-                    <button >
-                        <img src="/icons/copy.svg" alt="">
+                    <button>
+                        <img src="/icons/copy.svg" alt="" />
                     </button>
                 </div>
             </li>
         </ul>
     </div>
-    <button class="exit">Выйти из аккаунта</button>
+    <button class="exit" on:click={logout}>Выйти из аккаунта</button>
 </section>
 
 <style lang="scss">
-    section{
-
+    section {
         padding-left: 22px;
         padding-top: 60px;
 
-        > p{
+        > p {
             font-weight: 700;
             font-size: 22px;
             margin-bottom: 40px;
         }
 
-        .info{
+        .info {
             max-width: fit-content;
             min-height: fit-content;
 
@@ -61,18 +61,18 @@
                 row-gap: 40px;
                 column-gap: 150px;
 
-                li{
+                li {
                     max-width: fit-content;
-                    
-                    p{
-                        &:first-child{
+
+                    p {
+                        &:first-child {
                             font-weight: 400;
                             font-size: 14px;
                             color: var(--dark-blue-60);
                             margin-bottom: 6px;
                         }
 
-                        &:last-child{
+                        &:last-child {
                             font-weight: 405000;
                             font-size: 16px;
                             max-width: fit-content;
@@ -93,17 +93,16 @@
             color: rgba(243, 87, 87, 1);
             position: relative;
 
-            &::after{
-                content: '';
+            &::after {
+                content: "";
                 position: absolute;
                 display: inline-block;
                 width: 25px;
                 height: 25px;
-                background-image: url('/icons/exit_account.svg');
+                background-image: url("/icons/exit_account.svg");
                 background-repeat: no-repeat;
                 left: -34px;
                 top: -4px;
-
             }
         }
     }
