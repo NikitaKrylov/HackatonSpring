@@ -23,12 +23,13 @@
         </div>
     </div>
     <div class="main__user">
-        <img src="" alt="" class="avatar" />
-        <img src="./icons/avatar.svg" alt="" class="avatar" />
-        <div class="user-role">
-            <p class="Semibold user-name">Андрей Тычинин</p>
-            <p class="Medium user-role-name">Администратор</p>
-        </div>
+        <SideBarEntry path="/account" name="Личный кабинет" icon="avatar">
+            <!-- <img src="./icons/avatar.svg" alt="" class="avatar" /> -->
+            <div class="user-role">
+                <p class="Semibold user-name">Андрей Тычинин</p>
+                <p class="Medium user-role-name">Администратор</p>
+            </div>
+        </SideBarEntry>
     </div>
 </div>
 

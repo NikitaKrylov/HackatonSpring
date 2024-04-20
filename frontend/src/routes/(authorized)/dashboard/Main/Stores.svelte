@@ -6,9 +6,9 @@
 <section>
     <button>Смотреть все</button>
     <div class="stores">
-        <Store/>
-        <Store/>
-        <Store/>
+        <a href="#"><Store/></a>
+        <a href="#"><Store/></a>
+        <a href="#"><Store/></a>
     </div>
 </section>
 

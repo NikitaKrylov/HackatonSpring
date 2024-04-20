@@ -48,7 +48,7 @@
         > p{
             font-weight: 700;
             font-size: 22px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .info{
@@ -88,7 +88,7 @@
         }
 
         .exit {
-            margin-top: 100px;
+            margin-top: 50px;
             margin-left: 15px;
             color: rgba(243, 87, 87, 1);
             position: relative;
