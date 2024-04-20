@@ -1,15 +1,11 @@
-import type { Place } from "$lib";
+import type { Placement } from "$lib/data/placement";
+import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, parent }) => {
+    let { placements } = await parent();
     const id = Number(params.id);
-    const place: Place = {
-        id,
-        name: "Склад 1",
-        address: "Улица Шишкина",
-        place_kind: "warehouse",
-        workload: 2,
-        products: 10
-    };
-    return { place };
+    let placement = placements.find(x => x.id === id);
+    if (placement === undefined) redirect(303, "/map");
+    return { placement };
 };

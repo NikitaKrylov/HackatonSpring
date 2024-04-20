@@ -1,10 +1,12 @@
 <script lang="ts" context="module">
+    import type { Placement } from "$lib/data/placement";
     import type { LngLat } from "@yandex/ymaps3-types";
 
     export type MarkerData = {
         id: number;
-        kind: "warehouse" | "store";
+        kind: "storage" | "client";
         location: LngLat;
+        placement: Placement;
     };
 
     export let selected_places = writable<number[]>([]);
@@ -20,9 +22,9 @@
     $: {
         if ($selected_places.includes(data.id)) {
             path = "selected";
-        } else if (data.kind === "warehouse") {
+        } else if (data.kind === "storage") {
             path = "warehouse";
-        } else if (data.kind === "store") {
+        } else if (data.kind === "client") {
             path = "store";
         } else {
             path = "warehouse"; // Just in case

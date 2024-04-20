@@ -4,9 +4,8 @@
     import type { PageServerData } from "./$types";
 
     export let data: PageServerData;
-    $: place = data.place;
 
-    $: $selected_places = [place.id];
+    $: $selected_places = [data.placement.id];
 </script>
 
 <section>
@@ -15,16 +14,16 @@
             <img src="/icons/arrow_left.svg" alt="Назад" />
             <span>Назад</span>
         </a>
-        <h1>{place.name}</h1>
+        <h1>{data.placement.name}</h1>
     </header>
     <div>
         <h2>Название</h2>
-        <span>{place.name}</span>
+        <span>{data.placement.name}</span>
     </div>
     <div>
         <h2>Тип локации</h2>
         <span>
-            {#if place.place_kind === "warehouse"}
+            {#if data.placement.placement_type === "storage"}
                 Склад
             {:else}
                 Точка продаж
@@ -33,29 +32,31 @@
     </div>
     <div>
         <h2>Индивидуальный номер локации</h2>
-        <span>{place.id}</span>
+        <span>{data.placement.id}</span>
     </div>
     <div>
         <h2>Адрес</h2>
-        <span>{place.address}</span>
+        <span>{data.placement.address}</span>
     </div>
-    <div>
-        <div class="busy">
-            <span>Загруженность</span>
-            <Busy />
+    {#if data.placement.placement_type === "storage"}
+        <div>
+            <div class="busy">
+                <span>Загруженность</span>
+                <Busy current={data.placement.workload} maximum={data.placement.capacity} />
+            </div>
+            <p>
+                На складе находится {data.placement.workload} единиц ваших товаров из {data
+                    .placement.capacity} возможных.
+            </p>
         </div>
-        <p>
-            На складе находится {place.products} единиц ваших товаров.
-            <!-- TODO -->
-            <!-- Как-то дать понять что немного осталось места -->
-        </p>
-    </div>
+    {/if}
 </section>
 
 <style lang="scss">
     section {
         display: flex;
         flex-direction: column;
+        max-width: 400px;
         gap: 35px;
         padding: 22px;
 

@@ -5,11 +5,15 @@
     import type { LngLat } from "@yandex/ymaps3-types";
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
+    import type { LayoutServerData } from "./$types";
 
-    let markers: MarkerData[] = [
-        { id: 0, kind: "store", location: [39.719199, 47.243771] },
-        { id: 1, kind: "warehouse", location: [39.718199, 47.243771] }
-    ];
+    export let data: LayoutServerData;
+    let markers: MarkerData[] = data.placements.map(x => ({
+        id: x.id,
+        kind: x.placement_type,
+        location: x.coord,
+        placement: x
+    }));
     let routes: LngLat[][] = [];
 
     onMount(() => {
