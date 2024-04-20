@@ -1,14 +1,13 @@
-<script lang="ts"></script>
+<script lang="ts">
+    import Busy from "./Statistics/Busy.svelte";
+
+</script>
 
 <div class="card">
     <h3>Склад 1</h3>
     <div class="busy">
         <p>Загруженность</p>
-        <div class="busy-blocks">
-            <p class:active={true}>
-            <p class:active={false}>
-            <p class:active={false} >
-        </div>
+        <Busy/>
     </div>
     <p>Обработал 20 заявок на прошлой неделе</p>
 </div>
@@ -38,28 +37,6 @@
         align-items: center;
         gap: 18px;
 
-        .busy-blocks {
-            display: flex;
-            align-items:center;
-            gap: 4px;
-
-            p{
-                width: 17px;
-                height: 6px;
-                background-color: rgba(172, 210, 255, 1);
-
-                &:first-child{
-                    border-radius: 4px 0 0 4px;
-                }
-
-                &:last-child{
-                    border-radius: 0 4px 4px 0;
-                }
-
-                &.active {
-                    background-color: rgba(54, 207, 29, 1);
-                }
-            }
-        }
+        
     }
 </style>
