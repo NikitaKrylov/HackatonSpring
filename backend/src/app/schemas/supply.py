@@ -4,6 +4,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 from app.persistence.sqlalc_models import SupplyStatus
+from app.schemas.placement import PlacementOutDTO
 
 # -------------- Product ------------------
 
@@ -22,20 +23,6 @@ class ProductOutDTO(BaseProductDTO):
     id: int
 
 class ProductCreateDTO(BaseProductDTO):
-    pass
-
-
-# -------------- Placement ------------------
-
-class BasePlacementDTO(BaseModel):
-    name: str
-    coord: str
-    placement_type: str
-
-class PlacementOutDTO(BasePlacementDTO):
-    id: int
-
-class PlacementCreateDTO(BasePlacementDTO):
     pass
 
 
