@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, File, UploadFile
 
 from app.repository.purchase import PurchaseRepository
 from app.schemas.purchase import PurchaseOutDTO
@@ -17,3 +17,9 @@ async def get_all_purchases():
 async def create_purchase():
     # TODO надо сделать
     pass
+
+
+@router.post('/import')
+async def import_purchases(data: UploadFile = File()):
+    content = await data.read()
+    # TODO написать функцию создания объектов бд из датафрейма, использую bytes_to_pandas
