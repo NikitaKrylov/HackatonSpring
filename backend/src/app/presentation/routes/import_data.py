@@ -12,7 +12,12 @@ async def load_csv_data(data: UploadFile = File()):
     content = await data.read()
     await import_csv_data(content, PurePath(data.filename).suffix)
 
-@router.post('/json', tags=['import .json files'])
-async def load_json_data(data: UploadFile = File()):
+@router.post('/json/placement', tags=['import .json files about placements'])
+async def load_json_placement_data(data: UploadFile = File()):
+    content = await data.read()
+    return await import_json_data(content, PurePath(data.filename).suffix)
+
+@router.post('/json/distance', tags=['import .json files about distances'])
+async def load_json_distance_data(data: UploadFile = File()):
     content = await data.read()
     return await import_json_data(content, PurePath(data.filename).suffix)
