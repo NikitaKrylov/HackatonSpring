@@ -36,8 +36,10 @@
 </div>
 
 <style lang="scss">
+
 .wrapper {
     display: flex;
+    gap: 26px;
     justify-content: space-between;
 }
 
