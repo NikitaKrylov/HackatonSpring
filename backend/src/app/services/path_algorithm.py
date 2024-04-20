@@ -272,8 +272,6 @@ def cluster_points(points, num_clusters):
 
     return clusters
 
-1, [2, 3, 4, 5]
-2, [6]
 async def get_routes(from_point_id, point_ids, points_json, routes_json, num_trucks=1):
     points = [Point(id, points_json, routes_json) for id in point_ids]
     points = [(point.id, (point.coords[0], point.coords[1])) for point in points]

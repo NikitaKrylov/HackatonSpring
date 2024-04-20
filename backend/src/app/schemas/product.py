@@ -12,7 +12,7 @@ class BaseProductDTO(BaseModel):
     product_volume: float
     manufacture_date: datetime
     expiry_date: datetime
-    category: str
+    category: str = ''
 
 
 class ProductOutDTO(BaseProductDTO):
