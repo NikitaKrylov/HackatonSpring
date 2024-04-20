@@ -1,47 +1,38 @@
 <script lang="ts">
-    import Main from "./dashboard/Main/Main.svelte";
 </script>
 
-<div class="wrapper">
-    <div class="sidebar">
-        <div class="top">
-            <div class="logo">Logist 52</div>
-            <div class="sidebar__main">
-                <section class="sidebar-menu">
-                    <p class="Regular">Основное</p>
-                    <div class="main__btns">
-                        <button class:active={true} class="btn-main"><img src="/icons/home.svg" />Главная</button>
-                        <button class:active={false} class="btn-map"><img src="/icons/map.svg" />Карта</button>
-                        <button class:active={false} class="btn-orders"><img src="/icons/orders.svg" />Заказы</button>
-                    </div>
-                    <div class="line"></div>
-                    <p class="Regular">Панель администрации</p>
-                    <div class="main__btns">
-                        <button class:active={false} class="btn-users"><img src="/icons/users.svg" />Пользователи</button>
-                        <button class:active={false} class="btn-roles"><img src="/icons/roles.svg" />Роли</button>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="main__user">
-            <img src="" alt="" class="avatar">
-            <img src="./icons/avatar.svg" alt="" class="avatar">
-            <div class="user-role">
-                <p class="Semibold user-name">Абдукарим Ашотович</p>
-                <p class="Medium user-role-name">Администратор</p>
-            </div>
+
+<div class="sidebar">
+    <div class="top">
+        <div class="logo">Logist 52</div>
+        <div class="sidebar__main">
+            <section class="sidebar-menu">
+                <p class="Regular">Основное</p>
+                <div class="main__btns">
+                    <button class:active={true} class="btn-main"><img src="/icons/home.svg" />Главная</button>
+                    <button class:active={false} class="btn-map"><img src="/icons/map.svg" />Карта</button>
+                    <button class:active={false} class="btn-orders"><img src="/icons/orders.svg" />Заказы</button>
+                </div>
+                <div class="line"></div>
+                <p class="Regular">Панель администрации</p>
+                <div class="main__btns">
+                    <button class:active={false} class="btn-users"><img src="/icons/users.svg" />Пользователи</button>
+                    <button class:active={false} class="btn-roles"><img src="/icons/roles.svg" />Роли</button>
+                </div>
+            </section>
         </div>
     </div>
-    <Main/>
+    <div class="main__user">
+        <img src="" alt="" class="avatar">
+        <img src="./icons/avatar.svg" alt="" class="avatar">
+        <div class="user-role">
+            <p class="Semibold user-name">Абдукарим Ашотович</p>
+            <p class="Medium user-role-name">Администратор</p>
+        </div>
+    </div>
 </div>
 
 <style lang="scss">
-
-.wrapper {
-    display: flex;
-    gap: 26px;
-    justify-content: space-between;
-}
 
 .sidebar{
     background-color: white;

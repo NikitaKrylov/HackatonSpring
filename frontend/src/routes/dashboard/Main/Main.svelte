@@ -1,4 +1,4 @@
-<script>
+<script lang=ts>
     import Header from "./Header.svelte";
     import Stores from "./Stores.svelte";
 
@@ -9,10 +9,11 @@
     <Stores/>
 </main>
 
-<style>
+<style lang="scss">
     main {
         width: 100%;
         display: flex;
+        flex-direction: column;
         background-color: var(--white);
         border-radius: 25px;
 

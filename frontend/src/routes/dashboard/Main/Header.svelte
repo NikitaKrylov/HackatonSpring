@@ -6,8 +6,15 @@
 </header>
 
 <style>
+    header{
+        width: 100%;
+    }
     h3 {
         font-size: 26px;
         margin-bottom: 10px;
+    }
+
+    p{
+        color: var(--dark-blue-70);
     }
 </style>
