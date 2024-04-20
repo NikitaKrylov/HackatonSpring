@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from app.presentation.dependencies import check_permissions, get_current_user_with_role
+from app.presentation.dependencies import require_permissions
 from app.repository.role import RoleRepository
 from app.schemas.user import RoleChangeDTO, RoleCreateDTO, RoleOutDTO
 
@@ -25,7 +25,6 @@ async def update_role(data: RoleChangeDTO):
 
 
 @router.post('/test')
-async def test_roles(curent_user=Depends(get_current_user_with_role)):
-    check_permissions(curent_user)
+async def test_roles(curent_user=Depends(require_permissions('is_admin'))):
     return curent_user
 

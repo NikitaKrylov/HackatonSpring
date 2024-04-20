@@ -1,7 +1,10 @@
+from pathlib import PurePath
+
 from fastapi import APIRouter, File, UploadFile
 
 from app.repository.purchase import PurchaseRepository
 from app.schemas.purchase import PurchaseOutDTO
+from app.services.data import bytes_to_pandas
 
 router = APIRouter(prefix="/purchases")
 
@@ -22,4 +25,6 @@ async def create_purchase():
 @router.post('/import')
 async def import_purchases(data: UploadFile = File()):
     content = await data.read()
+    df = await bytes_to_pandas(content, PurePath(data.filename).suffix)
+
     # TODO написать функцию создания объектов бд из датафрейма, использую bytes_to_pandas
