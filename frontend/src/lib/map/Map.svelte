@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { LngLat, YMap, YMapFeature, YMapMarker } from "@yandex/ymaps3-types";
     import type { MarkerData } from "./Marker.svelte";
-    import { onMount } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
     import { addLine } from "./routing";
     import { addMarker } from "./marker";
     import { createCallbacks } from "./callback";
@@ -50,10 +50,12 @@
             .addChild(new YMapLayer({ type: "markers", zIndex: 1800 }))
             .addChild(
                 createCallbacks({
-                    click: data => console.log(data)
+                    click: data => dispatch("click", data)
                 })
             );
     });
+
+    const dispatch = createEventDispatcher<{ click: MarkerData }>();
 </script>
 
 <svelte:head>
