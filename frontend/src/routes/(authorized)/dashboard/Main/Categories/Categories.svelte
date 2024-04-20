@@ -2,22 +2,33 @@
     import Chart from 'chart.js/auto';
     import { onMount } from "svelte";
 
+    let items =  async () => {
+        return await fetch('https://hack.clayenkitten.ru/api/purchases/statistic?category=Овощи')
+        .then(data => data.json())
+    }
     let ctx: HTMLCanvasElement;
-    let labels = [
-        'Молочные продукты',
-        'Овощи',
-        'Фрукты',
-        'Хоз. товары',
-    ]
 
     onMount( async () => {
+        let response = await items();
+        const arr = []
+        const names = []
+
+        for(let key in response.categories){
+            names.push(key)
+            arr.push(response.categories[key])
+        }
+        
         var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: labels,
+            labels: names,
             datasets: [{
-                data: [3, 1, 1, 1],
+                data: arr,
                 backgroundColor: [
+                'rgba(160, 141, 252)',
+                'rgba(63, 198, 131, 1)',
+                'rgba(114, 204, 253, 1)',
+                'rgba(206, 233, 255, 1)',
                 'rgba(160, 141, 252)',
                 'rgba(63, 198, 131, 1)',
                 'rgba(114, 204, 253, 1)',

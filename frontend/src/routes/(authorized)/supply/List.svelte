@@ -1,4 +1,7 @@
 <script lang="ts">
+
+console.log(fetchPlacements('https://hack.clayenkitten.ru/api/offers'))
+
     const items = [
         {
             num: 2000,

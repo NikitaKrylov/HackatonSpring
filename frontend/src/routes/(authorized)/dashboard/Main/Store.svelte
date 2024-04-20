@@ -1,5 +1,6 @@
 <script lang="ts">
     import Busy from "$lib/components/Busy.svelte";
+
 </script>
 
 <div class="card">

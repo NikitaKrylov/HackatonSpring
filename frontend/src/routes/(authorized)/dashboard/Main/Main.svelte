@@ -3,6 +3,7 @@
     import Header from "./Header.svelte";
     import MainStatistic from "./Statistics/MainStatistic.svelte";
     import Stores from "./Stores.svelte";
+    import Table from "./Table.svelte";
     
 
 </script>
@@ -16,6 +17,7 @@
         </div>
         <Categories/>
     </div>
+    <Table/>
 </main>
 
 <style lang="scss">

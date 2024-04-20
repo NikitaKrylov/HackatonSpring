@@ -1,5 +1,11 @@
 <script lang="ts">
     import Store from "./Store.svelte";
+
+    // fetch('https://hack.clayenkitten.ru/api/offers')
+    // .then(response => response.json())
+    // .then(data => alert(data[0].placement.name));
+
+
 </script>
 
 <section>
