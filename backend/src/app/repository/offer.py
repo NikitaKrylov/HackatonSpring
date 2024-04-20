@@ -1,15 +1,10 @@
 from typing import Iterable
 
-from app.persistence.sqlalc_models import Placement
+from app.persistence.sqlalc_models import Offer
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
-from app.schemas.filters import PlacementFilter
-from app.schemas.placement import (
-    PlacementCreateDTO,
-    PlacementOutDTO,
-)
-
-
+from app.schemas.filters import OfferFilter
+from app.schemas.supply import OfferCreateDTO, OfferOutDTO
 
 
 class OfferRepository(SQLAlchemyRepository):
@@ -20,18 +15,19 @@ class OfferRepository(SQLAlchemyRepository):
             return await self.get_all_objects(
                 filter_data,
                 session,
-                PlacementOutDTO
+                OfferOutDTO,
+                joins=[Offer.placement, Offer.product]
             ) # type: ignore
 
-    async def create(self, data: PlacementCreateDTO):
+    async def create(self, data: OfferCreateDTO):
         async with async_session() as session:
             return await self.create_object(
                 session,
                 data,
-                PlacementOutDTO
+                OfferOutDTO
             )
 
-    async def create_all(self, data: Iterable[PlacementCreateDTO]):
+    async def create_all(self, data: Iterable[OfferCreateDTO]):
         async with async_session() as session:
             for placement in data:
                 _obj = self.model(**placement.model_dump())

@@ -2,9 +2,8 @@
 import random
 from random import random
 
-from app.repository.supply import SupplyRepository
+from app.repository.placement import PlacementRepository
 from app.schemas.filters import PlacementFilter
-from backend.src.app.repository.placement import PlacementRepository
 
 
 def generate_supply(id: int):
