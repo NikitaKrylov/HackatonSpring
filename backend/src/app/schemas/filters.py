@@ -23,3 +23,11 @@ class SupplyFilter(BaseFilterData):
 class PlacementFilter(BaseFilterData):
     id: int | None = None
     placement_type: str | None = None
+
+
+class ProductFilter(BaseFilterData):
+    pass
+
+
+class PurchaseFilter(BaseFilterData):
+    pass

@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 
-from sqlalchemy import ForeignKey
+from sqlalchemy import DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.repository.pg_repository import Base
@@ -16,7 +16,7 @@ class SupplyStatus(Enum):
 class User(Base):
     __tablename__ = 'user'
 
-    login: Mapped[str]
+    login: Mapped[str] = mapped_column(unique=True)
     password: Mapped[str]
     role_id: Mapped[int | None] = mapped_column(ForeignKey('role.id'), nullable=True)
     role: Mapped['Role'] = relationship(uselist=False, single_parent=True, back_populates='users')
@@ -41,19 +41,17 @@ class Product(Base):
     name: Mapped[str]
     manufactor: Mapped[str]
     product_measure: Mapped[str]
-    product_amount: Mapped[int]
-    product_volume: Mapped[int]
-    manufacture_date: Mapped[datetime]
-    expiry_date: Mapped[datetime]
+    product_amount: Mapped[float]
+    product_volume: Mapped[float]
+    manufacture_date: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    expiry_date: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
 
 class Placement(Base):
     __tablename__ = 'placement'
 
     name: Mapped[str]
-    #TODO check data type 'coord: Mapped[...]'
     coord: Mapped[str]
-
     placement_type: Mapped[str]
 
 
@@ -64,7 +62,7 @@ class Purchase(Base):
     store: Mapped['Placement'] = relationship(uselist=False)
     id_product: Mapped[int] = mapped_column(ForeignKey('product.id'))
     product: Mapped['Product'] = relationship(uselist=False)
-    time_sale: Mapped[datetime]
+    time_sale: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     product_cost: Mapped[int]
     quantity_sold: Mapped[int]
 

@@ -24,8 +24,7 @@ class UserRoleChangeDTO(BaseModel):
 
 
 class BaseRoleDTO(BaseModel):
-    ...
-    #TODO тут перечислять чекбоксы с разрешениями
+    is_admin: bool
 
 
 class RoleOutDTO(BaseRoleDTO):
@@ -40,6 +39,7 @@ class RoleCreateDTO(BaseRoleDTO):
 class RoleChangeDTO(BaseRoleDTO):
     id: int
     name: str
+    is_admin: bool
 
 
 class UserOutWithRoleDTO(UserOutDTO):
