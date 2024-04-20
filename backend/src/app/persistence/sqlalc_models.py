@@ -65,8 +65,8 @@ class Purchase(Base):
     id_product: Mapped[int] = mapped_column(ForeignKey('product.id'))
     product: Mapped['Product'] = relationship(uselist=False)
     time_sale: Mapped[datetime] = mapped_column(DateTime(timezone=True))
-    product_cost: Mapped[int]
-    quantity_sold: Mapped[int]
+    product_cost: Mapped[float]
+    quantity_sold: Mapped[float]
 
 
 class Distance(Base):
