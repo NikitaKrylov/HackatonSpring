@@ -12,7 +12,7 @@ export const addLine = (map: YMap, coordinates: LngLat[]) => {
             coordinates
         },
         style: {
-            stroke: [{ width: 3, color: "rgb(14, 194, 219)" }]
+            stroke: [{ width: 3, color: "#F35757" }]
         }
     });
     map.addChild(lineStringFeature);
