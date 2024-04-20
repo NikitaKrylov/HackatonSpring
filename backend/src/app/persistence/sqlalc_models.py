@@ -87,7 +87,7 @@ class Supply(Base):
     offers: Mapped[list['Offer']] = relationship()
     created_at: Mapped[datetime] = mapped_column(default=datetime.now)
     supply_status: Mapped[SupplyStatus] = mapped_column(default=SupplyStatus.INPROCESSING)
-    # TODO сделать статус
+
 
 class Offer(Base):
     __tablename__ = 'offer'

@@ -16,5 +16,6 @@ async def get_all_supplies(filter_data: SupplyFilter = Depends(SupplyFilter)):
 
 
 @router.post('', tags=["Для генерации путей в БД"])
-async def create_supply(data):
-    await generate_supplies(40)
+async def create_supply(amount: int = 40):
+    rez =  await generate_supplies(amount)
+    return rez

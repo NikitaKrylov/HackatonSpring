@@ -28,12 +28,17 @@ class SQLAlchemyRepository:
                          out_schema: Type[BaseModel],
                          allow_none: bool = True,
                          error: HTTPException | None = None,
-                         joins: list | None = None):
+                         joins: list | None = None,
+                         eager: list | None = None):
         query = select(self.model).where(expression)
 
         if joins is not None:
             for join in joins:
                 query = query.options(selectinload(join))
+
+        if eager:
+            for i in eager:
+                query = query.options(contains_eager(*i))
 
         result = await session.execute(query)
 

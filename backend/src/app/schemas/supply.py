@@ -47,13 +47,33 @@ class OfferCreateDTO(BaseOfferDTO):
 
 # -------------- Supply ------------------
 
+class SimpleOfferOutDTO(BaseModel):
+    id: int
+    product_count: int
+    product_id: int
+    placement_id: int
+    supply_id: int
+
+class SimplePlacementOutDTO(BaseModel):
+    address: str
+    name: str
+    id: int
+    coord: str
+    placement_type: str
+
 class SupplyOutDTO(BaseModel):
     id: int
     storage_id: int
-    offers: list[OfferOutDTO]
+    offers: list[SimpleOfferOutDTO]
+    storage: SimplePlacementOutDTO
     created_at: datetime
     supply_status: SupplyStatus
 
+
+class SupplyCreateDTO(BaseModel):
+    storage_id: int
+    offers: list[OfferOutDTO]
+    supply_status: SupplyStatus
 
 
 
