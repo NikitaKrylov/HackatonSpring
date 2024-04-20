@@ -41,8 +41,8 @@ class Product(Base):
     name: Mapped[str]
     manufactor: Mapped[str]
     product_measure: Mapped[str]
-    product_amount: Mapped[int]
-    product_volume: Mapped[int]
+    product_amount: Mapped[float]
+    product_volume: Mapped[float]
     manufacture_date: Mapped[datetime]
     expiry_date: Mapped[datetime]
 
