@@ -23,13 +23,12 @@ class SupplyRepository(SQLAlchemyRepository):
 
     async def get_supply_by_id(self, supply_id: int) -> SupplyOutDTO | None:
         async with async_session() as session:
-            return await self.get_object(
-                session,
-                self.model.id == supply_id,
-                SupplyOutDTO,
-                joins=[Supply.storage],
-                eager=[[Supply.offers, Offer.placement], [Supply.offers, Offer.product]]
-            )
+            query = select(Supply).options(
+                selectinload(Supply.offers),
+                selectinload(Supply.storage),
+            ).where(Supply.id == supply_id)
+            result = await session.execute(query)
+            return SupplyOutDTO.model_validate(result.scalar_one_or_none(), from_attributes=True)
 
     async def create_all(self, data: list[dict]):
         async with async_session() as session:

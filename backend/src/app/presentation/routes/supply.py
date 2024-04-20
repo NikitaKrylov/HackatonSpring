@@ -7,12 +7,18 @@ from app.shared.supply_script import generate_supplies
 
 router = APIRouter(prefix="/supplies")
 
-supply_repository = SupplyRepository()
+_supply_repository = SupplyRepository()
 
 
 @router.get('', response_model=list[SupplyOutDTO])
 async def get_all_supplies(filter_data: SupplyFilter = Depends(SupplyFilter)):
-    return await supply_repository.get_all()
+    return await _supply_repository.get_all()
+
+
+@router.get('/{id}', response_model=SupplyOutDTO)
+async def get_supply(id: int):
+    return await _supply_repository.get_supply_by_id(id)
+
 
 
 @router.post('', tags=["Для генерации путей в БД"])
