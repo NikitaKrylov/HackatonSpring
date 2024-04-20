@@ -45,6 +45,7 @@ class Product(Base):
     product_volume: Mapped[float]
     manufacture_date: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     expiry_date: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    category: Mapped[str] = mapped_column(default='')
 
 
 class Placement(Base):

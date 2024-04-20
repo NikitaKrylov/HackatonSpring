@@ -11,11 +11,13 @@ class BasePurchaseDTO(BaseModel):
     time_sale: datetime
     product_cost: int
     quantity_sold: int
+    category: str = ''
 
 class PurchaseOutDTO(BasePurchaseDTO):
     id: int
     store: PlacementOutDTO
     product: ProductOutDTO
+
 
 class PurchaseCreateDTO(BasePurchaseDTO):
     pass

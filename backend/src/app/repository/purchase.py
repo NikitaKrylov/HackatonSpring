@@ -1,3 +1,6 @@
+from sqlalchemy import func, select
+from sqlalchemy.orm import selectinload
+
 from app.persistence.sqlalc_models import Purchase
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
@@ -21,4 +24,15 @@ class PurchaseRepository(SQLAlchemyRepository):
         async with async_session() as session:
             pass
             # TODO написать
+
+    async def _get_categories_stat(self):
+        async with async_session() as session:
+            query = select(Purchase.product.category, func.count(Purchase.product.id))\
+                .group_by(Purchase.product.category)\
+                .options(selectinload(Purchase.product))
+            result = await session.execute(query)
+
+            return result.all()
+
+
 
