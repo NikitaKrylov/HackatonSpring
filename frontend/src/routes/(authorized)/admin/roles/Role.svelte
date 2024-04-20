@@ -44,9 +44,7 @@
                 &:not(:last-child){
                     margin-bottom: 16px;
                 }
-            }
-
-            
+            } 
         }
     }
 </style>
