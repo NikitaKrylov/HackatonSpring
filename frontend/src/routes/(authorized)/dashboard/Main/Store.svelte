@@ -1,6 +1,5 @@
 <script lang="ts">
-    import Busy from "./Statistics/Busy.svelte";
-
+    import Busy from "$lib/components/Busy.svelte";
 </script>
 
 <div class="card">
