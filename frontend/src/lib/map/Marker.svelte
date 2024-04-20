@@ -6,13 +6,33 @@
         kind: "warehouse" | "store";
         location: LngLat;
     };
+
+    export let selected_places = writable<number[]>([]);
 </script>
 
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
+    import { writable } from "svelte/store";
 
     export let data: MarkerData;
-    $: img_src = data.kind === "warehouse" ? "/icons/warehouse.svg" : "/icons/store.svg";
+    let path: string;
+
+    onMount(() => {
+        console.log($selected_places);
+    });
+
+    $: {
+        if ($selected_places.includes(data.id)) {
+            path = "selected";
+        } else if (data.kind === "warehouse") {
+            path = "warehouse";
+        } else if (data.kind === "store") {
+            path = "store";
+        } else {
+            path = "warehouse"; // Just in case
+        }
+        path = `/markers/${path}.svg`;
+    }
 
     const dispatch = createEventDispatcher<{ click: void }>();
 </script>
@@ -20,7 +40,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="marker" data-id={data.id} on:click={() => dispatch("click")}>
-    <img src={img_src} alt="" />
+    <img src={path} alt="" />
 </div>
 
 <style lang="scss">
