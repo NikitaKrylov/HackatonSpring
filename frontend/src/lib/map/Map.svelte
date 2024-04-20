@@ -32,9 +32,6 @@
         }
     }
 
-    export let api_key: string;
-    $: api_src = `https://api-maps.yandex.ru/v3/?apikey=${api_key}&lang=ru_RU`;
-
     onMount(async () => {
         if (map === undefined) {
             await ymaps3.ready;
@@ -53,10 +50,6 @@
 
     const dispatch = createEventDispatcher<{ click: MarkerData }>();
 </script>
-
-<svelte:head>
-    <script src={api_src}></script>
-</svelte:head>
 
 <div bind:this={mapElem} />
 

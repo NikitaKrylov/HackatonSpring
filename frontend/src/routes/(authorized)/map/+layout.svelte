@@ -30,12 +30,7 @@
 </script>
 
 <section>
-    <Map
-        api_key={PUBLIC_MAP_KEY}
-        {markers}
-        {routes}
-        on:click={e => goto(`/map/place/${e.detail.id}`)}
-    />
+    <Map {markers} {routes} on:click={e => goto(`/map/place/${e.detail.id}`)} />
     <div>
         <slot />
     </div>
