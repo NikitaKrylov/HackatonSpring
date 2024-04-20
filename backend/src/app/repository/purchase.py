@@ -1,11 +1,10 @@
-from sqlalchemy import func, select
-from sqlalchemy.orm import selectinload
+from sqlalchemy import text
 
 from app.persistence.sqlalc_models import Purchase
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
 from app.schemas.filters import PurchaseFilter
-from app.schemas.purchase import PurchaseOutDTO, PurchaseCreateDTO
+from app.schemas.purchase import PurchaseCreateDTO, PurchaseOutDTO
 
 
 class PurchaseRepository(SQLAlchemyRepository):
@@ -33,17 +32,33 @@ class PurchaseRepository(SQLAlchemyRepository):
             await session.commit()
 
 
-
-
-
     async def _get_categories_stat(self):
         async with async_session() as session:
-            query = select(Purchase.product.category, func.count(Purchase.product.id))\
-                .group_by(Purchase.product.category)\
-                .options(selectinload(Purchase.product))
-            result = await session.execute(query)
-
-            return result.all()
-
+            query = """SELECT product.category,
+            CAST (sum(purchase.quantity_sold) as FLOAT) /
+            (SELECT sum(purchase.quantity_sold) FROM product RIGHT OUTER JOIN purchase ON purchase.id_product = product.id)
+            FROM purchase JOIN product ON purchase.id_product = product.id GROUP BY product.category"""
+            return {i[0]: i[1] for i in (await session.execute(text(query))).fetchall()}
 
 
+    async def _get_turnover_per_last_week_by_category(self, category: str):
+        async with async_session() as session:
+            category = 'а'
+            query = f"""SELECT
+            date_part('week', date(supply.created_at)) as week,
+            count(offer.id)
+            FROM supply
+            JOIN offer ON offer.supply_id = supply.id
+            JOIN product ON product.id = offer.product_id
+            WHERE product.category = '{category}'
+            GROUP BY week"""
+            return [{
+                'week': i[0],
+                'value': i[1]
+            } for i in (await session.execute(text(query))).fetchall()]
+
+    async def get_purches_stats(self, category: str):
+        return {
+            'turnover': await self._get_turnover_per_last_week_by_category(category),
+            'categories': await self._get_categories_stat()
+        }

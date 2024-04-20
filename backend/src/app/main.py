@@ -15,8 +15,8 @@ async def lifespan(app: FastAPI):
     #	await MySQLTools.check_connection()
     #	RedisTools.check_connection()
     await healthcheck()
-    # await init_models()
-    # print('database reseted')
+    #await init_models()
+    #print('database reseted')
     yield
     # After server has shuted down
     logging.info('Server shutting down.\n\n\n')
