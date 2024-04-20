@@ -1,4 +1,5 @@
 from typing import Iterable
+
 from app.persistence.sqlalc_models import Distance, Placement
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
@@ -35,7 +36,7 @@ class PlacementRepository(SQLAlchemyRepository):
             for placement in data:
                 _obj = self.model(**placement.model_dump())
                 session.add(_obj)
-        await session.commit()
+            await session.commit()
 
 
 class DistanceRepository(SQLAlchemyRepository):

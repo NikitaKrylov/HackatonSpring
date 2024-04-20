@@ -1,14 +1,20 @@
+import os
 from datetime import datetime, timedelta
+
 import jwt
-from fastapi import HTTPException, Depends
+from fastapi import Depends, HTTPException
 from starlette import status
+
 from app.repository.user import UserRepository
 from app.schemas.auth import TokenData
-from app.schemas.user import CreateUserDTO, UserOutWithPasswordDTO, UserOutDTO, UserOutWithRoleDTO
+from app.schemas.user import (
+    CreateUserDTO,
+    UserOutDTO,
+    UserOutWithPasswordDTO,
+    UserOutWithRoleDTO,
+)
 from app.shared.logs import get_logger
-from app.shared.settings import secure_settings, oauth2_scheme
-from app.shared.settings import pwd_context
-import os
+from app.shared.settings import oauth2_scheme, pwd_context, secure_settings
 
 user_repository = UserRepository()
 print(os.listdir('/'))

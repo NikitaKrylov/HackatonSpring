@@ -1,21 +1,22 @@
-from io import BytesIO
 import json
 import re
+from io import BytesIO
 
 import pandas as pd
 from fastapi import HTTPException, status
 
-from app.repository.product import ProductRepository
-from app.schemas.product import ProductCreateDTO
-from app.schemas.placement import PlacementCreateDTO
 from app.repository.placement import PlacementRepository
+from app.repository.product import ProductRepository
+from app.schemas.placement import PlacementCreateDTO
+from app.schemas.product import ProductCreateDTO
 
 engines = {
         '.xlsx': 'openpyxl',
         '.xls': 'xlrd'
     }
 
-product_repository = ProductRepository()
+_product_repository = ProductRepository()
+_placement_repo = PlacementRepository()
 
 
 async def bytes_to_pandas(data: bytes, file_extension: str):
@@ -41,12 +42,12 @@ async def import_json_data(data: bytes, file_extension: str):
 
     data_dict = await bytes_to_dict(data)
     points = data_dict["features"]
-    result = map(lambda point: PlacementCreateDTO(name=point["properties"]["iconCaption"],
+    result = [PlacementCreateDTO(name=point["properties"]["iconCaption"],
                                                   coord=f"({point['geometry']['coordinates'][0]}, {point['geometry']['coordinates'][1]})",
-                                                  placement_type='storage' if re.match(r"Склад[a-zA-Z0-9\ \-\_*]", point["properties"]["iconCaption"]) else 'client'), points) # type: ignore
+                                                  placement_type='storage' if re.match(r"Склад[a-zA-Z0-9\ \-\_*]", point["properties"]["iconCaption"]) else 'client') for point in points ]# type: ignore
 
-    placement_repo = PlacementRepository()
-    await placement_repo.create_all(result)
+    await _placement_repo.create_all(result)
+    return result
 
 
 async def import_csv_data(data: bytes, file_extension: str):
@@ -76,6 +77,6 @@ async def import_products(dataframe: pd.Series):
     }, axis='columns')
 
     products = [ProductCreateDTO(**i) for i in dataframe.to_dict('records')][:100] # type: ignore
-    await product_repository.create_all(products)
+    await _product_repository.create_all(products)
 
 

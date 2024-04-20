@@ -1,8 +1,8 @@
 from pathlib import PurePath
+
 from fastapi import APIRouter, File, UploadFile
 
 from app.services.import_data import import_csv_data, import_json_data
-
 
 router = APIRouter(prefix="/import")
 
