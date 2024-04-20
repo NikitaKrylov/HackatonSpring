@@ -31,3 +31,6 @@ class ProductFilter(BaseFilterData):
 
 class PurchaseFilter(BaseFilterData):
     pass
+
+class DistanceFilter(BaseFilterData):
+    pass

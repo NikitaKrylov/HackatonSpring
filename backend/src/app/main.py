@@ -14,6 +14,7 @@ async def lifespan(app: FastAPI):
     # Before server started
     #	await MySQLTools.check_connection()
     #	RedisTools.check_connection()
+
     await init_models()
     print('database reseted')
     yield
@@ -21,7 +22,7 @@ async def lifespan(app: FastAPI):
     logging.info('Server shutting down.\n\n\n')
 
 
-app = FastAPI(root_path="/api")
+app = FastAPI(root_path="/api", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,

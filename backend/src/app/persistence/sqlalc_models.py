@@ -77,11 +77,12 @@ class ClientInfo(Base):
 class Distance(Base):
     __tablename__ = 'distance'
 
-    #TODO обязательно указать back_poppulates c разными именами
     source_id: Mapped[int] = mapped_column(ForeignKey('placement.id'))
+    source: Mapped['Placement'] = relationship(foreign_keys=[source_id])
     target_id: Mapped[int] = mapped_column(ForeignKey('placement.id'))
-    distance: Mapped[int]
-    duration: Mapped[int]
+    target: Mapped['Placement'] = relationship(foreign_keys=[target_id])
+    distance: Mapped[float]
+    duration: Mapped[float]
 
 # Head
 class Supply(Base):
