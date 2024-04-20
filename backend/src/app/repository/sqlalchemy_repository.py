@@ -22,7 +22,13 @@ class SQLAlchemyRepository:
 
         return out_schema.model_validate(_obj, from_attributes=True)
 
-    async def get_object(self, session: AsyncSession, expression, out_schema: Type[BaseModel], allow_none: bool = True, error: HTTPException | None = None, joins: list | None = None):
+    async def get_object(self,
+                         session: AsyncSession,
+                         expression,
+                         out_schema: Type[BaseModel],
+                         allow_none: bool = True,
+                         error: HTTPException | None = None,
+                         joins: list | None = None):
         query = select(self.model).where(expression)
 
         if joins is not None:
@@ -41,7 +47,12 @@ class SQLAlchemyRepository:
 
         return out_schema.model_validate(_obj, from_attributes=True)
 
-    async def get_all_objects(self, session: AsyncSession, out_schema: Type[BaseModel], joins: list | None = None, eager: list[list[Any]] | None = None, filter_data: BaseFilterData | None = None):
+    async def get_all_objects(self,
+                              filter_data: BaseFilterData | None = None,
+                              session: AsyncSession,
+                              out_schema: Type[BaseModel],
+                              joins: list | None = None,
+                              eager: list[list[Any]] | None = None):
         query = select(self.model)
 
         if joins is not None:
