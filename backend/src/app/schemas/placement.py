@@ -10,7 +10,12 @@ class BasePlacementDTO(BaseModel):
 
 class PlacementOutDTO(BasePlacementDTO):
     id: int
+    coord: str | list[float] | list[str]
+    capacity: int | None = None
+    workload: int | None = None
 
 
 class PlacementCreateDTO(BasePlacementDTO):
     pass
+
+
