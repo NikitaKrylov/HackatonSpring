@@ -10,7 +10,7 @@ class SecureSettings(BaseSettings):
     geocoder_api_key: str
 
 
-secure_settings = SecureSettings(_env_file='app.env')
+secure_settings = SecureSettings(_env_file='app.env') # type: ignore
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/api/users/login')
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
