@@ -141,3 +141,8 @@ logs/
 
 # tests
 tests/
+
+#Environments
+
+*.env
+!*example.env
