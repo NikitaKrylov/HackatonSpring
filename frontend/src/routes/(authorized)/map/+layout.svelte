@@ -18,13 +18,16 @@
     let routes: LngLat[][] = [];
 
     onMount(() => {
-        return () => ($selected_places = []);
+        return () => {
+            $selected_places = [];
+        };
     });
 
-    onNavigate(() => {
+    $: {
+        $selected_places;
         markers = markers;
         routes = routes;
-    });
+    }
 </script>
 
 <section>
@@ -33,6 +36,7 @@
         {markers}
         {routes}
         on:click={e => {
+            $collapsed = false;
             goto(`/map/warehouse/${e.detail.id}`);
         }}
     />

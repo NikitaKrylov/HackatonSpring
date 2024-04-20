@@ -4,7 +4,6 @@
     import { createEventDispatcher, onMount } from "svelte";
     import { addLine } from "./routing";
     import { addMarker } from "./marker";
-    import { createCallbacks } from "./callback";
 
     let mapElem: HTMLElement;
     let map: YMap | undefined = undefined;
@@ -17,7 +16,9 @@
         if (map !== undefined) {
             const _map = map;
             markers_features.forEach(feat => _map.removeChild(feat));
-            markers_features = markers.map(marker => addMarker(_map, marker));
+            markers_features = markers.map(marker =>
+                addMarker(_map, marker, () => dispatch("click", marker))
+            );
         }
     }
 
@@ -47,12 +48,7 @@
 
         map.addChild(new YMapDefaultSchemeLayer({}))
             .addChild(new YMapDefaultFeaturesLayer({}))
-            .addChild(new YMapLayer({ type: "markers", zIndex: 1800 }))
-            .addChild(
-                createCallbacks({
-                    click: data => dispatch("click", data)
-                })
-            );
+            .addChild(new YMapLayer({ type: "markers", zIndex: 1800 }));
     });
 
     const dispatch = createEventDispatcher<{ click: MarkerData }>();

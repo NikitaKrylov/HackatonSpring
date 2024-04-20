@@ -11,16 +11,12 @@
 </script>
 
 <script lang="ts">
-    import { createEventDispatcher, onMount } from "svelte";
     import { writable } from "svelte/store";
 
     export let data: MarkerData;
+    export let click: (data: MarkerData) => void = () => {};
+
     let path: string;
-
-    onMount(() => {
-        console.log($selected_places);
-    });
-
     $: {
         if ($selected_places.includes(data.id)) {
             path = "selected";
@@ -33,13 +29,18 @@
         }
         path = `/markers/${path}.svg`;
     }
-
-    const dispatch = createEventDispatcher<{ click: void }>();
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="marker" data-id={data.id} on:click={() => dispatch("click")}>
+<div
+    class="marker"
+    data-id={data.id}
+    on:click={() => {
+        $selected_places = [data.id];
+        click(data);
+    }}
+>
     <img src={path} alt="" />
 </div>
 
