@@ -1,3 +1,4 @@
+import { goto } from "$app/navigation";
 import { PUBLIC_BASE_URL } from "$env/static/public";
 
 /** Name of the token cookie */
@@ -27,4 +28,9 @@ export async function login(email: string, password: string): Promise<string> {
     } else {
         throw new Error("Запрос логина провалился");
     }
+}
+
+export async function logout() {
+    document.cookie = tokenCookie + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    await goto("/signin");
 }
