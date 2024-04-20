@@ -9,9 +9,9 @@
             <section class="sidebar-menu">
                 <p class="Regular">Основное</p>
                 <div class="main__btns">
-                    <button class:active={true} class="btn-main"><img src="/icons/home.svg" />Главная</button>
-                    <button class:active={false} class="btn-map"><img src="/icons/map.svg" />Карта</button>
-                    <button class:active={false} class="btn-orders"><img src="/icons/orders.svg" />Заказы</button>
+                    <button class:active={true} class="btn-main"><img class:active={true} src="/icons/home.svg" />Главная</button>
+                    <button class:active={false} class="btn-map"><img class:active={false} src="/icons/map.svg" />Карта</button>
+                    <button class:active={false} class="btn-orders"><img class:active={false} src="/icons/orders.svg" />Заказы</button>
                 </div>
                 <div class="line"></div>
                 <p class="Regular">Панель администрации</p>
@@ -88,6 +88,10 @@ button {
         background-color: var(--egg-blue-100);
         border-radius: 15px;
         color: var(--white);
+    }
+
+    img.active{
+        filter: invert(100%);
     }
 }
 

@@ -12,9 +12,13 @@
 <style lang="scss">
     main{
         margin-top: 18px;
-        max-width: 724px;
+        max-width: 100%;
         padding: 22px;
         border: 1px solid var(--dark-blue-50);
         border-radius: 35px;
+
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
     }
 </style>

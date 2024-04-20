@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
     width: 100vw;
     height: 100dvh;
     background-color: rgba(243, 242, 244, 1);
 
-    padding: 38px 26px;
-    font-family: 'Urbanist', sans-serif;
+    padding: 30px 26px 20px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 500;
     color: rgba(46, 36, 77, 1);
@@ -71,7 +71,7 @@ body {
 }
 
 //---сброс стилей
-button{
+button, select{
     border: none;
     font: inherit;
     color: inherit;

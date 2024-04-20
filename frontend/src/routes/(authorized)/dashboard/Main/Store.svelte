@@ -15,16 +15,16 @@
 
 <style lang="scss">
     .card{
-        max-width: 236px;
+        max-width: 250px;
         background: rgba(228, 248, 230, 1);
         border-radius: 35px;
         text-align: center;
-        padding: 26px 7px 20px;
+        padding: 20px 7px 16px;
     }
 
     h3 {
-        font-size: 26px;
-        margin-bottom: 20px;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
     }
 
     p{

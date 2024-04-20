@@ -14,13 +14,14 @@
 
 <style lang="scss">
     section{
-        max-width: 734px;
+        max-width: 100%;
         text-align: right;
 
         button {
             color: var(--egg-blue-100);
             position: relative;
             margin-bottom: 16px;
+            padding-right: 14px;
 
             &::after{
                 content: '';
@@ -30,7 +31,7 @@
                 background-repeat: no-repeat;
                 width: 7px;
                 height: 14px;
-                right: -15px;
+                right: 0;
                 top: 4px;
             }
         }
@@ -38,6 +39,7 @@
         .stores{
             display: flex;
             justify-content: space-between;
+            gap: 8px;
         }
     }
 </style>
