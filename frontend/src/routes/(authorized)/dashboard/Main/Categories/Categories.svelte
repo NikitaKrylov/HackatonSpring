@@ -23,7 +23,8 @@
                 'rgba(114, 204, 253, 1)',
                 'rgba(206, 233, 255, 1)'
                 ],
-                hoverOffset: 4
+                hoverOffset: 4,
+                borderAlign: 'inner'
             }]
         },
         options: {
