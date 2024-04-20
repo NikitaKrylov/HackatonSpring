@@ -1,9 +1,8 @@
-from contextlib import asynccontextmanager
 import logging
-import os
-from fastapi import FastAPI
+from contextlib import asynccontextmanager
 
 import uvicorn
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.presentation.routes.api import api_router
@@ -36,10 +35,10 @@ async def root() -> dict[str, str]:
     return {"message": "Hello World"}
 
 
-# @app.on_event('startup')
-# async def startup():
-#     await init_models()
-#     print('database reseted')
+@app.on_event('startup')
+async def startup():
+    await init_models()
+    print('database reseted')
 
 
 if __name__ == '__main__':
