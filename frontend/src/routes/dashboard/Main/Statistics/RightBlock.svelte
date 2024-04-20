@@ -75,7 +75,8 @@
 
 <style lang="scss">
     div {
-        width: 350px;
+        flex: 1;
+        max-width: 400px;
 
         .text{
             display: flex;
@@ -88,7 +89,8 @@
                 span{
                     font-size: 14px;
                     color: rgba(54, 207, 29, 1);
-                    margin-left: 6px;
+                    margin-left: 4px;
+                    margin-right: 4px;
                 }
             }
 

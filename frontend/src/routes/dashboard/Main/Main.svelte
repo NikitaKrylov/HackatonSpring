@@ -10,7 +10,7 @@
 <main>
     <Header/>
     <div class="wrapper">
-        <div class="right-bar">
+        <div class="left-bar">
             <Stores/>
             <MainStatistic/>
         </div>
@@ -29,9 +29,10 @@
         padding: 35px 22px;
     }
 
-    .right-bar {
+    .left-bar {
         display: flex;
         flex-direction: column;
+        min-width: 800px;
     }
 
     .wrapper{

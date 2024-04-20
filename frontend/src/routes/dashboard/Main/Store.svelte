@@ -15,7 +15,7 @@
 
 <style lang="scss">
     .card{
-        max-width: 236px;
+        max-width: 250px;
         background: rgba(228, 248, 230, 1);
         border-radius: 35px;
         text-align: center;

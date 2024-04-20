@@ -19,5 +19,6 @@
 
         display: flex;
         justify-content: space-between;
+        gap: 20px;
     }
 </style>
