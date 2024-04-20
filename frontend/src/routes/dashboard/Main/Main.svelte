@@ -2,6 +2,7 @@
     import Header from "./Header.svelte";
     import MainStatistic from "./Statistics/MainStatistic.svelte";
     import Stores from "./Stores.svelte";
+    
 
 </script>
 
