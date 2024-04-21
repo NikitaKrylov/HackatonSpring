@@ -38,6 +38,16 @@ class UserRoleChangeDTO(BaseModel):
 class BaseRoleDTO(BaseModel):
     is_admin: bool
 
+    can_edit_users: bool = False
+    can_read_users: bool = False
+    can_edit_roles: bool = False
+    can_manage_roles: bool = False
+    cat_edit_supply: bool = False
+    can_read_supply: bool = False
+    can_edit_offers: bool = False
+    can_read_offers: bool = False
+    can_read_statistic: bool = False
+
 
 class RoleOutDTO(BaseRoleDTO):
     id: int
@@ -51,7 +61,7 @@ class RoleCreateDTO(BaseRoleDTO):
 class RoleChangeDTO(BaseRoleDTO):
     id: int
     name: str
-    is_admin: bool
+
 
 
 class UserOutWithRoleDTO(UserOutDTO):

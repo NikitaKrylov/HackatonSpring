@@ -35,7 +35,16 @@ class Role(Base):
     name: Mapped[str]
     is_admin: Mapped[bool] = mapped_column(default=False)
     users: Mapped[User] = relationship(uselist=True, back_populates='role')
-    #TODO добавить чекбоксы с разрешениями
+
+    can_edit_users: Mapped[bool] = mapped_column(default=False)
+    can_read_users: Mapped[bool] = mapped_column(default=False)
+    can_edit_roles: Mapped[bool] = mapped_column(default=False)
+    can_manage_roles: Mapped[bool] = mapped_column(default=False)
+    cat_edit_supply: Mapped[bool] = mapped_column(default=False)
+    can_read_supply: Mapped[bool] = mapped_column(default=False)
+    can_edit_offers: Mapped[bool] = mapped_column(default=False)
+    can_read_offers: Mapped[bool] = mapped_column(default=False)
+    can_read_statistic: Mapped[bool] = mapped_column(default=False)
 
 
 
@@ -103,4 +112,6 @@ class Offer(Base):
     placement_id: Mapped[int] = mapped_column(ForeignKey('placement.id'))
     placement: Mapped['Placement'] = relationship(uselist=False)
     supply_id: Mapped[int] = mapped_column(ForeignKey('supply.id'))
+
+
 

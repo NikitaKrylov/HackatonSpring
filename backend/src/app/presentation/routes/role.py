@@ -20,7 +20,7 @@ async def create_role(data: RoleCreateDTO):
 
 
 @router.patch('')
-async def update_role(data: RoleChangeDTO):
+async def update_role(data: list[RoleChangeDTO]):
     await role_repository.update(data)
 
 

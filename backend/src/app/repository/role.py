@@ -23,11 +23,12 @@ class RoleRepository(SQLAlchemyRepository):
                 RoleOutDTO
             )
 
-    async def update(self, data: RoleChangeDTO) -> None:
+    async def update(self, data: list[RoleChangeDTO]) -> None:
         async with async_session() as session:
-            await self.update_object(
-                session,
-                data,
-                self.model.id == data.id
+            for i in data:
+                await self.update_object(
+                    session,
+                    i,
+                    self.model.id == i.id
             )
 
