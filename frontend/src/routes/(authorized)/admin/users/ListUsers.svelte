@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { User } from "$lib/data/user";
+    import { type User, deleteUser } from "$lib/data/user";
 
     export let users: User[];
 
@@ -41,8 +41,15 @@
             <button on:click={toggleVissible}>
                 <img class="add-user" src="/icons/edit_points.svg" alt="" />
                 <div class="hidden btn-add">
-                    <button>Редактировать</button>
-                    <button>Удалить</button>
+                    <button on:click|stopPropagation={() => {}}> Редактировать </button>
+                    <button
+                        on:click|stopPropagation={() => {
+                            users = users.filter(x => x.id !== user.id);
+                            deleteUser(user.id);
+                        }}
+                    >
+                        Удалить
+                    </button>
                 </div>
             </button>
         </li>

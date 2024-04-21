@@ -1,4 +1,4 @@
-import { fetchJSON } from "$lib/fetch";
+import { fetchJSON, fetchPlain } from "$lib/fetch";
 
 export type User = {
     id: number;
@@ -11,9 +11,13 @@ export type User = {
 
 /** Информация о текущем пользователе */
 export async function fetchMe(): Promise<User> {
-    return (await fetchJSON<User>('/users/me')).data;
+    return (await fetchJSON<User>("/users/me")).data;
 }
 
 export async function fetchUsers(): Promise<User[]> {
-    return (await fetchJSON<User[]>('/users')).data;
+    return (await fetchJSON<User[]>("/users")).data;
+}
+
+export async function deleteUser(id: number): Promise<void> {
+    await fetchPlain(`/users/${id}`, { method: "DELETE" });
 }
