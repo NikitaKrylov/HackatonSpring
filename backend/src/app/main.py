@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.presentation.routes.api import api_router
-from app.repository.pg_repository import healthcheck, init_models
+from app.repository.pg_repository import healthcheck
 
 
 @asynccontextmanager
@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     #	RedisTools.check_connection()
     await healthcheck()
     # await init_models()
-    #print('database reseted')
+    # print('database reseted')
     yield
     # After server has shuted down
     logging.info('Server shutting down.\n\n\n')

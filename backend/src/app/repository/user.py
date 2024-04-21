@@ -3,8 +3,13 @@ from typing import Type
 from app.persistence.sqlalc_models import User
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
-from app.schemas.user import UserOutDTO, CreateUserDTO, UserOutWithPasswordDTO, UserOutWithRoleDTO, \
-    UserRoleChangeDTO
+from app.schemas.user import (
+    CreateUserDTO,
+    UserOutDTO,
+    UserOutWithPasswordDTO,
+    UserOutWithRoleDTO,
+    UserRoleChangeDTO,
+)
 
 
 class UserRepository(SQLAlchemyRepository):
@@ -51,4 +56,12 @@ class UserRepository(SQLAlchemyRepository):
                     i,
                     self.model.id == i.id
                 )
+
+    async def get_all(self) -> list[UserOutDTO]:
+        async with async_session() as session:
+            return await self.get_all_objects(
+                None,
+                session,
+                UserOutDTO
+            )
 

@@ -18,6 +18,10 @@ class User(Base):
 
     login: Mapped[str] = mapped_column(unique=True)
     password: Mapped[str]
+    first_name: Mapped[str]
+    last_name: Mapped[str]
+    middle_name: Mapped[str]
+    phone: Mapped[str]
     role_id: Mapped[int | None] = mapped_column(ForeignKey('role.id'), nullable=True, default=None)
     role: Mapped['Role'] = relationship(uselist=False, single_parent=True, back_populates='users')
 

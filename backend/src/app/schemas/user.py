@@ -4,11 +4,19 @@ from pydantic import BaseModel
 class UserOutDTO(BaseModel):
     id: int
     login: str
+    first_name: str
+    last_name: str
+    middle_name: str
+    phone: str
 
 
 class CreateUserDTO(BaseModel):
     login: str
     password: str
+    first_name: str
+    last_name: str
+    middle_name: str
+    phone: str
     role_id: int | None = None
 
 
@@ -16,6 +24,10 @@ class UserOutWithPasswordDTO(BaseModel):
     id: int
     login: str
     password: str
+    first_name: str
+    last_name: str
+    middle_name: str
+    phone: str
 
 
 class UserRoleChangeDTO(BaseModel):
