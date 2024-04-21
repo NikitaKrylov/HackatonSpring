@@ -13,7 +13,6 @@
 
     <div class="filters">
         <Filter/>
-        <Filter/>
     </div>
 
     <div class="firstGraph">
@@ -53,7 +52,7 @@
             display: flex;
             max-width: 432px;
             gap: 22px;
-            margin-bottom: 42px;
+            margin-bottom: 16px;
         }
 
         .firstGraph{
@@ -65,7 +64,6 @@
 
         .listGraphics{
             display: flex;
-            justify-content: space-between;
             gap: 18px;
             margin-top: 18px;
 

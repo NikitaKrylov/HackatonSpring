@@ -1,9 +1,19 @@
 <script lang="ts">
     import Chart from 'chart.js/auto';
     import { onMount } from "svelte";
-
         
-    const data = [];
+    let ctx: HTMLCanvasElement;
+
+
+    let cons = []
+    let coords = []
+
+
+    
+
+    onMount( async () => {
+
+    const data = coords;
     const data2 = [];
     let prev = 100;
     let prev2 = 80;
@@ -47,51 +57,39 @@
     }
     };
 
+      cons = await fetch('https://hack.clayenkitten.ru/api/algorithms/trend_prediction')
+        .then(data => data.json())
 
-    let ctx: HTMLCanvasElement;
-    const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-    ]
+        cons[2].map(coord => coords.push(coord[1]))
+        coords = coords
 
-    
+        console.log(coords);
 
-    onMount( async () => {
         var myChart = new Chart(ctx,  {
-  type: 'line',
-  data: {
-    datasets: [{
-      borderColor: 'red',
-      borderWidth: 1,
-      radius: 0,
-      data: data,
-    },
-    {
-      borderColor: 'blue',
-      borderWidth: 1,
-      radius: 0,
-      data: data2,
-    }]
-  },
-  options: {
-    animation,
-    interaction: {
-      intersect: false
-    },
-    plugins: {
-      legend: false
-    },
-    scales: {
-      x: {
-        type: 'linear'
-      }
-    }
-  }
-});
+          type: 'line',
+          data: {
+            datasets: [{
+              borderColor: 'red',
+              borderWidth: 1,
+              radius: 0,
+              data: coords,
+            }]
+          },
+          options: {
+            animation,
+            interaction: {
+              intersect: false
+            },
+            plugins: {
+              legend: false
+            },
+            scales: {
+              x: {
+                type: 'linear'
+              }
+            }
+          }
+        });
     });
 
 </script>

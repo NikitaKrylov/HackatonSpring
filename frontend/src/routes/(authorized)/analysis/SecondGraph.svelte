@@ -1,18 +1,30 @@
 <script lang="ts">
     import Chart from 'chart.js/auto';
     import { onMount } from "svelte";
+    
+    let cons = []
+    let coords = []
 
     let ctx: HTMLCanvasElement;
-    let labels = [10, 20, 30, 40, 50, 60, 70]
+    let labels = [1,2,3,4,8,9,10,11,12,13,14,19,20,21,22,23,27,28,34,35,36,37,38,39,40,41,46,47,48,49,50,51,52,]
 
     onMount( async () => {
+
+        cons = await fetch('https://hack.clayenkitten.ru/api/algorithms/trend_prediction')
+        .then(data => data.json())
+
+        cons[1].map(coord => coords.push(coord[1]))
+        coords = coords
+
+        console.log(coords);
+
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
                     label: '',
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: coords,
                     fill: false,
                     borderColor: 'rgba(71, 146, 206, 1)',
                     tension: 0.1

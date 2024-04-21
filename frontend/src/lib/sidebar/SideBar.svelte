@@ -52,6 +52,7 @@
     .logo {
         font-weight: 900;
         font-size: 24px;
+        margin-right: 12px;
         > img {
             width: 122px;
         }

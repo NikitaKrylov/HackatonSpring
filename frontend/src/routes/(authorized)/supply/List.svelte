@@ -39,7 +39,7 @@
             border: 1px solid var(--dark-blue-40);
             padding: 33px 0;
             display: grid;
-            grid-template-columns: 130px 200px 126px 300px 295px auto;
+            grid-template-columns: 80px 110px 110px 300px auto 250px;
 
             &:first-child {
                 padding: 0 0 33px;
@@ -48,6 +48,9 @@
 
             p:nth-child(1) {
                 padding-left: 15px;
+            }
+            p:nth-child(2) {
+                padding-right: 20px;
             }
 
             p:nth-child(4) {
@@ -58,9 +61,7 @@
                 max-width: 250px;
             }
 
-            p:nth-child(6) {
-                text-align: center;
-            }
+            
         }
     }
 
