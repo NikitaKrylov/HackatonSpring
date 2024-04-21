@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Busy, { getColor, getColorBack } from "$lib/components/Busy.svelte";
+    import Busy, { getColorBack } from "$lib/components/Busy.svelte";
     import type { Placement } from "$lib/data/placement";
 
     export let placements: Placement[];
@@ -10,7 +10,7 @@
 <section>
     <a class="seealso" href="/map">Смотреть всё</a>
     <div class="stores">
-        {#each entries as entry}
+        {#each entries as entry, i}
             <a
                 class="card"
                 style:background-color={getColorBack(entry.workload, entry.capacity)}
@@ -21,7 +21,7 @@
                     <p>Загруженность</p>
                     <Busy current={entry.workload} maximum={entry.capacity} />
                 </div>
-                <p>Обработал 20 заявок на прошлой неделе</p>
+                <p>Обработал {Math.min(53 / (i + 1) * 12)} заявок на прошлой неделе</p>
             </a>
         {/each}
     </div>
