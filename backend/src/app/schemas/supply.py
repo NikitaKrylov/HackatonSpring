@@ -68,6 +68,7 @@ class SupplyOutDTO(BaseModel):
     storage: SimplePlacementOutDTO
     created_at: datetime
     supply_status: SupplyStatus
+    transport_date: datetime | None = None
 
 
 class SupplyCreateDTO(BaseModel):

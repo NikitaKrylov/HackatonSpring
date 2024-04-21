@@ -1,3 +1,4 @@
+from datetime import timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 
@@ -19,7 +20,10 @@ class SupplyRepository(SQLAlchemyRepository):
                 selectinload(Supply.storage),
             )
             result = await session.execute(query)
-            return [SupplyOutDTO.model_validate(i, from_attributes=True) for i in result.scalars().unique().all()]
+            r = [SupplyOutDTO.model_validate(i, from_attributes=True) for i in result.scalars().unique().all()]
+            for _ in r:
+                _.transport_date = _.created_at + timedelta(days=7)
+            return r
 
     async def get_supply_by_id(self, supply_id: int) -> SupplyOutDTO | None:
         async with async_session() as session:
@@ -28,7 +32,9 @@ class SupplyRepository(SQLAlchemyRepository):
                 selectinload(Supply.storage),
             ).where(Supply.id == supply_id)
             result = await session.execute(query)
-            return SupplyOutDTO.model_validate(result.scalar_one_or_none(), from_attributes=True)
+            r = SupplyOutDTO.model_validate(result.scalar_one_or_none(), from_attributes=True)
+            r.transport_date = r.created_at + timedelta(days=7)
+            return r
 
     async def create_all(self, data: list[dict]):
         async with async_session() as session:
