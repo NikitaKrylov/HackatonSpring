@@ -1,9 +1,12 @@
+from datetime import datetime, timezone
 import json
 import os
 from fastapi import APIRouter, HTTPException
+import pandas as pd
 
 from app.services.path_algorithm import get_routes
 from app.repository.supply import SupplyRepository
+from app.services.trend_predicion import predict
 
 
 router = APIRouter(prefix="/algorithms")
@@ -28,3 +31,8 @@ async def optimal_path(supply_id: int, num_trucks: int = 1):
     print([[j+1 for j in i] for i in result])
     result =[[j+1 for j in i] for i in result]
     return result
+
+@router.get("/trend_prediction")
+async def trend_prediction(end_date: datetime = datetime.now(timezone.utc), product_name: str = 'Молоко'):
+    data = pd.read_csv(os.path.abspath("data/data.csv"))
+    return predict(product_name, end_date.strftime("%Y-%m-%d"), data)

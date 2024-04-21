@@ -12,6 +12,7 @@ WORKDIR /src
 
 COPY ./requirements ./requirements
 RUN  pip install -r requirements/dev.txt
+RUN pip install etna
 
 RUN mkdir -p ./logs
 

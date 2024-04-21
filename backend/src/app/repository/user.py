@@ -5,13 +5,8 @@ from sqlalchemy import delete
 from app.persistence.sqlalc_models import User
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
-from app.schemas.user import (
-    CreateUserDTO,
-    UserOutDTO,
-    UserOutWithPasswordDTO,
-    UserOutWithRoleDTO,
-    UserRoleChangeDTO,
-)
+from app.schemas.user import UserOutDTO, CreateUserDTO, UserOutWithPasswordDTO, UserOutWithRoleDTO, \
+    UserRoleChangeDTO
 
 
 class UserRepository(SQLAlchemyRepository):
@@ -23,7 +18,7 @@ class UserRepository(SQLAlchemyRepository):
                 session,
                 data,
                 UserOutDTO
-            )
+            ) # type: ignore
 
     async def get_by_id(self, _id: int) -> UserOutDTO | None:
         async with async_session() as session:
@@ -31,7 +26,7 @@ class UserRepository(SQLAlchemyRepository):
                 session,
                 self.model.id == _id,
                 UserOutDTO
-            )
+            ) # type: ignore
 
     async def get_by_id_with_role(self, _id: int) -> UserOutWithRoleDTO | None:
         async with async_session() as session:
@@ -39,14 +34,14 @@ class UserRepository(SQLAlchemyRepository):
                 session,
                 self.model.id == _id,
                 UserOutWithRoleDTO,
-                joins=[self.model.role]
+                joins=[self.model.role] # type: ignore
             )
 
     async def get_by_login(self, login: str, out_schema: Type[UserOutDTO | UserOutWithPasswordDTO] = UserOutDTO) -> UserOutDTO | None | UserOutWithPasswordDTO:
         async with async_session() as session:
             return await self.get_object(
                 session,
-                self.model.login == login,
+                self.model.login == login, # type: ignore
                 out_schema
             )
 
