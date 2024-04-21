@@ -1,16 +1,14 @@
 <script lang="ts">
-    import { fetchPlacements, type Placement } from "$lib/data/placement";
-    import { onMount } from "svelte";
     import Categories from "./Categories/Categories.svelte";
     import Header from "./Header.svelte";
     import MainStatistic from "./Statistics/MainStatistic.svelte";
     import Stores from "./Stores.svelte";
     import Table from "./Table.svelte";
+    import type { PageData } from "./$types";
 
-    let placements: Placement[] = [];
-    onMount(async () => {
-        placements = await fetchPlacements();
-    });
+    export let data: PageData;
+    $: placements = data.placements;
+    $: offers = data.offers;
 </script>
 
 <main>
@@ -22,7 +20,7 @@
         </div>
         <Categories />
     </div>
-    <Table />
+    <Table {offers} />
 </main>
 
 <style lang="scss">
