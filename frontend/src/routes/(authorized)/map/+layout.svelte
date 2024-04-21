@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { PUBLIC_MAP_KEY } from "$env/static/public";
     import { selected_places, type MarkerData } from "$lib/map/Marker.svelte";
     import Map from "$lib/map/Map.svelte";
     import type { LngLat } from "@yandex/ymaps3-types";
-    import { onMount } from "svelte";
+    import { onMount, setContext } from "svelte";
     import { goto } from "$app/navigation";
     import type { LayoutServerData } from "./$types";
+    import { writable } from "svelte/store";
 
     export let data: LayoutServerData;
     let markers: MarkerData[] = data.placements.map(x => ({
@@ -14,7 +14,9 @@
         location: x.coord,
         placement: x
     }));
-    let routes: LngLat[][] = [];
+
+    const routes = writable<LngLat[][]>([]);
+    setContext("routes", routes);
 
     onMount(() => {
         return () => {
@@ -25,12 +27,12 @@
     $: {
         $selected_places;
         markers = markers;
-        routes = routes;
+        $routes = $routes;
     }
 </script>
 
 <section>
-    <Map {markers} {routes} on:click={e => goto(`/map/place/${e.detail.id}`)} />
+    <Map {markers} routes={$routes} on:click={e => goto(`/map/place/${e.detail.id}`)} />
     <div>
         <slot />
     </div>
