@@ -25,7 +25,7 @@
 
 <section>
     <header>
-        <a href="/map">
+        <a href="/map" on:click={() => ($selected_places = [])}>
             <img src="/icons/arrow_left.svg" alt="Назад" />
             <span>Назад</span>
         </a>
@@ -36,23 +36,29 @@
         <h2>Номер заявки</h2>
         <span>{data.supply.id}</span>
     </div>
-    <div>
+    <div class="status">
         <h2>Статус</h2>
         <Status status={data.supply.supply_status} />
     </div>
     <div>
         <h2>Запланированная дата перевозки</h2>
-        <span>{data.supply.created_at}</span>
+        <span>{data.supply.created_at.split("T")[0]}</span>
     </div>
     <div>
-        <h2>Количество пунктов в маршруте</h2>
-        <span>{data.supply.offers.length}</span>
+        <h2>Точки для посещения</h2>
+        <ol>
+            {#each data.supply.offers as offer}
+                {@const placement = data.placements.find(x => x.id === offer.placement_id)}
+                <li>{placement?.address}</li>
+            {/each}
+        </ol>
     </div>
     <div>
         <h2>Товары в заявке</h2>
         <ul>
             {#each data.supply.offers as offer}
-                <li>{offer.product_id}</li>
+                {@const product = data.products.find(x => x.id === offer.product_id)}
+                <li>{product?.name}, {product?.sku}</li>
             {/each}
         </ul>
     </div>
@@ -62,8 +68,11 @@
     section {
         display: flex;
         flex-direction: column;
+        max-width: 600px;
         gap: 35px;
         padding: 22px;
+        max-height: 100%;
+        overflow: auto;
 
         header {
             display: flex;
@@ -104,6 +113,22 @@
                 display: flex;
                 gap: 30px;
                 align-items: center;
+            }
+            ol,
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                list-style-position: inside;
+            }
+            ul,
+            ul > li {
+                list-style: disc inside;
+            }
+            &.status {
+                flex-direction: row;
+                align-items: center;
+                gap: 22px;
             }
         }
     }

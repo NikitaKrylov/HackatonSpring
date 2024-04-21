@@ -1,16 +1,11 @@
 <script lang="ts">
-    import type { Supply } from "$lib";
     import Status from "$lib/components/Status.svelte";
     import { goto } from "$app/navigation";
+    import type { LayoutServerData } from "./$types";
 
     let collapsed = false;
 
-    const supplies: Supply[] = [
-        { id: 0, date: "20 апреля", status: "Ожидает", stops: 5 },
-        { id: 1, date: "20 апреля", status: "Завершено", stops: 5 },
-        { id: 2, date: "20 апреля", status: "В работе", stops: 5 },
-        { id: 3, date: "20 апреля", status: "Ожидает", stops: 5 }
-    ];
+    export let data: LayoutServerData;
 </script>
 
 <section class:collapsed>
@@ -27,12 +22,12 @@
             <th>Статус</th>
             <th>Кол-во пунктов</th>
         </tr>
-        {#each supplies as supply}
+        {#each data.supplies as supply}
             <tr on:click={() => goto(`/map/supply/${supply.id}`)}>
                 <td>{supply.id}</td>
-                <td>{supply.date}</td>
-                <td><Status status={supply.status} /></td>
-                <td>{supply.stops}</td>
+                <td>{supply.transport_date.split("T")[0]}</td>
+                <td><Status status={supply.supply_status} /></td>
+                <td>{supply.offers.length}</td>
             </tr>
         {/each}
     </table>
@@ -43,8 +38,9 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        max-height: 100%;
+        overflow: auto;
 
-        overflow: scroll;
         header {
             display: flex;
             gap: 8px;
@@ -99,7 +95,9 @@
 
         &.collapsed {
             width: 56px;
-            overflow-x: hidden;
+            bottom: 0;
+            overflow: hidden;
+
             table,
             h2 {
                 visibility: hidden;

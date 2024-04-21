@@ -48,10 +48,9 @@
             position: absolute;
             right: 0;
             top: 0;
+            bottom: 0;
             border-radius: 25px;
             background-color: white;
-            overflow-x: hidden;
-            overflow-y: scroll;
         }
     }
 </style>

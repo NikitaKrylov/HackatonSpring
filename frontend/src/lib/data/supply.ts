@@ -19,6 +19,7 @@ export type Supply = {
     };
     created_at: string;
     supply_status: string;
+    transport_date: string;
 };
 
 export async function fetchSupplies(): Promise<Supply[]> {
