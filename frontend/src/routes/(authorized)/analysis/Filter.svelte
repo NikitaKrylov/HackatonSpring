@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let selected; String;
     
 </script>
 
