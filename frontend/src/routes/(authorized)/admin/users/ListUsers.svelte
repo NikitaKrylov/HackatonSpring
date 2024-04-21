@@ -1,5 +1,5 @@
 <script lang="ts">
-    let role = "";
+    import { writable } from "svelte/store";
 
     const items = [
         {
@@ -48,8 +48,27 @@
             mail: "privet@gmail.com"
         }
     ];
+
+
+    let visible = false;
+
+    function toggleVissible(e) {
+        e.target.parentNode.lastChild.classList.toggle('hidden')
+        
+    }
 </script>
 
+
+<div>
+    <header>
+        <h2>Пользователи</h2>
+        <p>Создавайте новых пользователей, управляйте ими и их ролями</p>
+    </header>
+    <button class="send">
+        <img src="/icons/add-contact.svg" alt="" />
+        <p>Добавить пользователя</p>
+    </button>
+</div>
 <ul>
     <li class="li-header">
         <p>ФИО</p>
@@ -61,24 +80,58 @@
         <li>
             <p><img src={item.fio.url} alt="" /><span>{item.fio.name}</span></p>
             <p>{item.num}</p>
-            <select name="" id="">
+            <select name="" id="">~
                 <option selected value="">{item.role}</option>
                 <option value="">Админ</option>
                 <option value="">Логист</option>
             </select>
             <p>{item.mail}</p>
-            <button><img class="add-user" src="/icons/edit_points.svg" alt="" /></button>
+            <button on:click={toggleVissible} >
+                <img class="add-user" src="/icons/edit_points.svg" alt="" />
+                <div class="hidden btn-add">
+                    <button>Редактировать</button>
+                    <button>Удалить</button>
+                </div>
+            </button>
         </li>
     {/each}
 </ul>
 
 <style lang="scss">
+
+    
+
+    .btn-add{
+        display: flex;
+        gap: 4px;
+        flex-direction: column;
+        align-items: end;
+        position: absolute;
+        right: 40px;
+        top: 20px;
+        
+
+
+        button{
+            background-color: var(--dark-blue-40);
+            padding: 6px;
+            width: max-content;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    }
+
+    .hidden{
+        display: none;
+    }
+
     ul {
         max-width: 100%;
         max-height: 86.5%;
         overflow: auto;
 
         li {
+            position: relative;
             border: 1px solid var(--dark-blue-40);
             padding: 33px 0;
             display: grid;
@@ -100,20 +153,39 @@
             select {
                 max-width: 180px;
             }
+
+            
         }
     }
 
-    ul::-webkit-scrollbar-thumb {
-        width: 7px;
-        height: 68px;
-        border-radius: 100px;
-        background-color: var(--egg-blue-90);
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    header {
+        margin-bottom: 46px;
     }
 
-    ul::-webkit-scrollbar-track {
-        width: 2px;
-        height: 100%;
-        border-radius: 100px;
-        background-color: var(--egg-blue-0);
+    h2 {
+        font-weight: 700;
+        font-size: 30px;
+        margin-bottom: 8px;
     }
+
+    p {
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+   .send {
+        display: flex;
+        gap: 19px;
+
+        background-color: var(--egg-blue-100);
+        padding: 15px 20px;
+        color: var(--white);
+        border-radius: 15px;
+    }
+
 </style>

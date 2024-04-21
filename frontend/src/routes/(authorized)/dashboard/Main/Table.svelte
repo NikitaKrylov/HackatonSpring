@@ -1,30 +1,13 @@
 <script>
-    const items = [
-        {
-            num: 2000,
-            position: 'apples',
-            id: 1,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 2,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 3,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        }
-    ]
+    import { onMount } from "svelte";
+    import {fetchOffers} from '../../../../lib/data/offer'
+
+    let items = [];
+
+    onMount(async () => {
+        items = await fetchOffers()
+        
+    } )
 </script>
 
 <section>
@@ -41,14 +24,14 @@
             <p>Адрес</p>
             <p>Количество </p>
         </li>
-        {#each items as item}
+        {#each items as item, i}
             <li>
-                <p>{item.num}</p>
-                <p>{item.position}</p>
-                <p>{item.id}</p>
-                <p>{item.order}</p>
-                <p>{item.address}</p>
-                <p>{item.count}</p>
+                <p>{item.supply_id}</p>
+                <p>{item.product.name}</p>
+                <p>{item.product.sku}</p>
+                <p>{item.product.manufactor}</p>
+                <p>{item.placement.address}</p>
+                <p>{item.product.product_amount} {item.product.product_measure}</p>
             </li>
         {/each}
     </ul>
@@ -60,7 +43,7 @@
         background: var(--white);
         padding: 35px;
         border-radius: 35px;
-        max-height: min-content;
+        max-height: 27rem;
     }
 
     header{
@@ -75,18 +58,26 @@
 
     ul{
         max-width: 100%;
-        max-height: 40.5%;
+        max-height: 30.5%;
         overflow: hidden;
 
         li{
             border: 1px solid var(--dark-blue-40);
-            padding: 33px 18px;
+            padding: 33px 0;
             display: grid;
-            grid-template-columns: 130px 187px 126px 172px 295px auto;
+            grid-template-columns: 130px 200px 126px 260px 195px auto;
 
             &:first-child{
                 padding: 0 0 33px;
                 border: none;
+            }
+
+            p:nth-child(1){
+                padding-left: 15px;
+            }
+
+            p:nth-child(4){
+                padding-right: 8px;
             }
 
             p:nth-child(5){

@@ -1,15 +1,6 @@
 <script lang="ts"></script>
 
-<div>
-    <header>
-        <h2>Пользователи</h2>
-        <p>Создавайте новых пользователей, управляйте ими и их ролями</p>
-    </header>
-    <button>
-        <img src="/icons/add-contact.svg" alt="" />
-        <p>Добавить пользователя</p>
-    </button>
-</div>
+
 
 <style lang="scss">
     div {

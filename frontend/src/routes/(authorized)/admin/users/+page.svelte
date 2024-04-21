@@ -1,10 +1,8 @@
 <script lang="ts">
-    import Header from "./Header.svelte";
     import ListUsers from "./ListUsers.svelte";
 </script>
 
 <main>
-    <Header />
     <ListUsers />
 </main>
 

@@ -12,7 +12,19 @@
         ''
     ]
 
+    let arr = [];
+    let week = 0;
+    let value = 0;
+
     onMount( async () => {
+
+        arr = await fetch('https://hack.clayenkitten.ru/api/purchases/statistic?category=%D0%A4%D1%80%D1%83%D0%BA%D1%82%D1%8B')
+        .then(data => data.json());
+
+        week = arr.turnover[0].week
+        value = arr.turnover[0].value
+
+
         var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -49,7 +61,8 @@
             }
         }
     });
-    });
+    });    
+    
 
 </script>
 
@@ -74,10 +87,12 @@
         .text{
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
 
             p{
             font-weight: 600;
-            font-size: 22px;
+            font-size: 18px;
 
                 span{
                     font-size: 14px;
@@ -87,11 +102,14 @@
                 }
             }
 
-            select option{
+            select {
+                max-width: 150px;
+
+                option{
                 &:focus {
                     border: none;
                 }
-            }
+            }}
         }
 
         

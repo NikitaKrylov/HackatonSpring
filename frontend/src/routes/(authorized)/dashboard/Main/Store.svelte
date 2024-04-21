@@ -19,7 +19,7 @@
         background: rgba(228, 248, 230, 1);
         border-radius: 35px;
         text-align: center;
-        padding: 20px 7px 16px;
+        padding: 20px 12px 16px;
     }
 
     h3 {
@@ -29,6 +29,7 @@
 
     p{
         display: inline-block;
+        font-size: 14px;
     }
 
     .busy {
@@ -37,5 +38,6 @@
         align-items: center;
         gap: 18px;
         margin-bottom: 0.625rem;
+        font-size: 14px;
     }
 </style>
