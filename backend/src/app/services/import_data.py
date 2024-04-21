@@ -6,7 +6,7 @@ from io import BytesIO
 
 import pandas as pd
 from fastapi import HTTPException, status
-
+from
 from app.repository.placement import DistanceRepository, PlacementRepository
 from app.repository.product import ProductRepository
 from app.schemas.placement import PlacementCreateDTO
@@ -15,6 +15,8 @@ from app.schemas.distance import DistanceCreateDTO
 from app.schemas.purchase import PurchaseCreateDTO
 from app.schemas.product import ProductCreateDTO
 from app.repository.purchase import PurchaseRepository
+from app.repository.offer import OfferRepository
+from backend.src.app.schemas.supply import OfferCreateDTO
 
 engines = {
         '.xlsx': 'openpyxl',
@@ -122,3 +124,17 @@ async def import_purchase(dataframe: pd.DataFrame):
                                   quantity_sold=i["Quantity_Sold"]))
         acc += 1
     await _purchase_repository.create_all(products)
+
+async def import_offer_csv(data: bytes, file_extension: str):
+    _offer_repo = OfferRepository()
+    df = await bytes_to_pandas(data, file_extension)
+    offer_df = df[['product_count', 'product_id', 'placement_id', 'supply_id']]
+
+    return await _offer_repo.create_all([OfferCreateDTO(**i) for i in offer_df.to_dict('records')])
+
+async def export_offer_csv(file_name: str = "report.xlsx"):
+    _offer_repo = OfferRepository()
+    offer_list = await _offer_repo.get_all()
+    offers = [offer.model_dump() for offer in offer_list]
+
+    return pd.DataFrame(offers).to_excel(file_name)
