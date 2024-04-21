@@ -71,7 +71,13 @@
         <p>Категория <span>+12,6%</span></p>
         <select name="" id="">
             <option selected value="">Бакалея</option>
-            <option selected value="">Молочные продукты</option>
+            <option  value="">Молочные продукты</option>
+            <option  value="">Мясо и птица</option>
+            <option  value="">Сладости</option>
+            <option  value="">Масла</option>
+            <option  value="">Фрукты</option>
+            <option  value="">Овощи</option>
+            <option  value="">Хлебобучлочные изделия</option>
         </select>
     </div>    
     
