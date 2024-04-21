@@ -2,6 +2,13 @@
     import Chart from 'chart.js/auto';
     import { onMount } from "svelte";
 
+    let cons = []
+
+    // onMount(async () => {
+    //     cons = await fetch('https://hack.clayenkitten.ru/api/roles')
+    //     .then(data => data.json())
+    // })
+
     let ctx: HTMLCanvasElement;
     let labels = [10, 20, 30, 40, 50, 60, 70]
 

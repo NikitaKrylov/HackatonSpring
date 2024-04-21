@@ -1,16 +1,32 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import Role from './Role.svelte'
     const tasks = ['Управление пользователями','Управление ролями','Управление поставками','Администрирование заявок']
     
+    let roles = []
+    let rolesArr = []
+
+
+    onMount (async () => {
+        roles = await fetch('https://hack.clayenkitten.ru/api/roles')
+        .then(data => data.json())
+
+        roles.map(item => {
+            let role = item.name
+            rolesArr.push(role)
+            rolesArr = rolesArr
+        })
+
+    })
 </script>
 
 <section>
     <header>Роли</header>
     <div class="roles">
-        <Role {tasks} name='Администратор'/>
-        <Role {tasks} name='Логист'/>
-        <Role {tasks} name='Аналитик'/>
-        <Role {tasks} name='Персонал склада'/>
+        {#each rolesArr as role, i}
+        <Role {tasks} name={role}/>   
+        {/each}
+        
         <button>
             <img src="/icons/plus.svg" alt="plus">
             <p>Создать новую роль</p>

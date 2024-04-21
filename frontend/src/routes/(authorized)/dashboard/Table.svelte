@@ -52,12 +52,12 @@
 
     ul {
         max-width: 100%;
-        max-height: 30.5%;
+        max-height: 50.5%;
         overflow: hidden;
 
         li {
             border: 1px solid var(--dark-blue-40);
-            padding: 33px 0;
+            padding: 20px 0;
             display: grid;
             grid-template-columns: 130px 200px 126px 260px 195px auto;
 
