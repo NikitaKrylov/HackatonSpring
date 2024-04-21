@@ -28,14 +28,7 @@
                     'rgba(124, 89, 233, 1)',
                     'rgba(240, 235, 253, 1)',
                 ],
-                borderRadius: [
-                    5,
-                    5,
-                    5,
-                    5,
-                    5,
-                    5,
-                ],
+                borderRadius: [5, 5, 5, 5, 5, 5],
                 borderWidth: 1
             }]
         },

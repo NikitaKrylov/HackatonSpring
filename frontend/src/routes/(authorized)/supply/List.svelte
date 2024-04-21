@@ -1,65 +1,25 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+    import {fetchOffers} from './../../../lib/data/offer'
 
-console.log(fetchPlacements('https://hack.clayenkitten.ru/api/offers'))
+    let items = [];
 
-    const items = [
-        {
-            num: 2000,
-            position: 'apples',
-            id: 1,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 2,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 3,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 4,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 5,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 6,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-        {
-            num: 2000,
-            position: 'apples',
-            id: 7,
-            order: 'pyaterochka',
-            address: 'улица Ленинский проспект, дом 52, корпус 3',
-            count: 120
-        },
-    ]
+    onMount(async () => {
+        items = await fetchOffers()
+        console.log(items);
+        
+    } )
+
+    // const items = [
+    //     {
+    //         num: 2000,
+    //         position: 'apples',
+    //         id: 1,
+    //         order: 'pyaterochka',
+    //         address: 'улица Ленинский проспект, дом 52, корпус 3',
+    //         count: 120
+    //     }
+    // ]
 </script>
 
 <ul>
@@ -71,14 +31,14 @@ console.log(fetchPlacements('https://hack.clayenkitten.ru/api/offers'))
         <p>Адрес</p>
         <p>Количество </p>
     </li>
-    {#each items as item}
+    {#each items as item, i}
         <li>
-            <p>{item.num}</p>
-            <p>{item.position}</p>
-            <p>{item.id}</p>
-            <p>{item.order}</p>
-            <p>{item.address}</p>
-            <p>{item.count}</p>
+            <p>{item.supply_id}</p>
+            <p>{item.product.name}</p>
+            <p>{item.product.sku}</p>
+            <p>{item.product.manufactor}</p>
+            <p>{item.placement.address}</p>
+            <p>{item.product.product_amount} {item.product.product_measure}</p>
         </li>
     {/each}
 </ul>
@@ -91,13 +51,21 @@ console.log(fetchPlacements('https://hack.clayenkitten.ru/api/offers'))
 
         li{
             border: 1px solid var(--dark-blue-40);
-            padding: 33px 18px;
+            padding: 33px 0;
             display: grid;
-            grid-template-columns: 130px 187px 126px 172px 295px auto;
+            grid-template-columns: 130px 200px 126px 300px 295px auto;
 
             &:first-child{
                 padding: 0 0 33px;
                 border: none;
+            }
+
+            p:nth-child(1){
+                padding-left: 15px;
+            }
+
+            p:nth-child(4){
+                padding-right: 8px;
             }
 
             p:nth-child(5){

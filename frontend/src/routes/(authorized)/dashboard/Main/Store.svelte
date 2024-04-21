@@ -37,6 +37,5 @@
         align-items: center;
         gap: 18px;
         margin-bottom: 0.625rem;
-        
     }
 </style>
