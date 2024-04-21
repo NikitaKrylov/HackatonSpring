@@ -1,63 +1,12 @@
 <script lang="ts">
-    import { writable } from "svelte/store";
+    import type { User } from "$lib/data/user";
 
-    const items = [
-        {
-            fio: {
-                url: "/icons/ava-users.svg",
-                name: "Крылов Никита Евгеньевич"
-            },
-            num: 52000001,
-            role: "Персонал склада",
-            mail: "privet@gmail.com"
-        },
-        {
-            fio: {
-                url: "/icons/ava-users.svg",
-                name: "Крылов Никита Евгеньевич"
-            },
-            num: 52000001,
-            role: "Персонал склада",
-            mail: "privet@gmail.com"
-        },
-        {
-            fio: {
-                url: "/icons/ava-users.svg",
-                name: "Крылов Никита Евгеньевич"
-            },
-            num: 52000001,
-            role: "Персонал склада",
-            mail: "privet@gmail.com"
-        },
-        {
-            fio: {
-                url: "/icons/ava-users.svg",
-                name: "Крылов Никита Евгеньевич"
-            },
-            num: 52000001,
-            role: "Персонал склада",
-            mail: "privet@gmail.com"
-        },
-        {
-            fio: {
-                url: "/icons/ava-users.svg",
-                name: "Крылов Никита Евгеньевич"
-            },
-            num: 52000001,
-            role: "Персонал склада",
-            mail: "privet@gmail.com"
-        }
-    ];
+    export let users: User[];
 
-
-    let visible = false;
-
-    function toggleVissible(e) {
-        e.target.parentNode.lastChild.classList.toggle('hidden')
-        
+    function toggleVissible(e: any) {
+        e.target.parentNode.lastChild.classList.toggle("hidden");
     }
 </script>
-
 
 <div>
     <header>
@@ -76,17 +25,20 @@
         <p>Роль</p>
         <p>Почта</p>
     </li>
-    {#each items as item}
+    {#each users as user}
         <li>
-            <p><img src={item.fio.url} alt="" /><span>{item.fio.name}</span></p>
-            <p>{item.num}</p>
-            <select name="" id="">~
-                <option selected value="">{item.role}</option>
+            <p>
+                <img src={"/icons/user_icon.svg"} alt="" />
+                <span>{user.last_name} {user.first_name} {user.middle_name}</span>
+            </p>
+            <p>{user.id}</p>
+            <select name="" id="">
+                <option selected value="">{user}</option>
                 <option value="">Админ</option>
                 <option value="">Логист</option>
             </select>
-            <p>{item.mail}</p>
-            <button on:click={toggleVissible} >
+            <p>{user.login}</p>
+            <button on:click={toggleVissible}>
                 <img class="add-user" src="/icons/edit_points.svg" alt="" />
                 <div class="hidden btn-add">
                     <button>Редактировать</button>
@@ -98,10 +50,7 @@
 </ul>
 
 <style lang="scss">
-
-    
-
-    .btn-add{
+    .btn-add {
         display: flex;
         gap: 4px;
         flex-direction: column;
@@ -109,10 +58,8 @@
         position: absolute;
         right: 40px;
         top: 20px;
-        
 
-
-        button{
+        button {
             background-color: var(--dark-blue-40);
             padding: 6px;
             width: max-content;
@@ -121,7 +68,7 @@
         }
     }
 
-    .hidden{
+    .hidden {
         display: none;
     }
 
@@ -148,13 +95,16 @@
                 align-items: center;
                 gap: 16px;
                 margin-left: 18px;
+
+                img {
+                    height: 50px;
+                    width: 50px;
+                }
             }
 
             select {
                 max-width: 180px;
             }
-
-            
         }
     }
 
@@ -178,7 +128,7 @@
         font-size: 14px;
     }
 
-   .send {
+    .send {
         display: flex;
         gap: 19px;
 
@@ -187,5 +137,4 @@
         color: var(--white);
         border-radius: 15px;
     }
-
 </style>

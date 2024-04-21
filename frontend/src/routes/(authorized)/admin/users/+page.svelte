@@ -1,9 +1,12 @@
 <script lang="ts">
+    import type { PageData } from "./$types";
     import ListUsers from "./ListUsers.svelte";
+
+    export let data: PageData;
 </script>
 
 <main>
-    <ListUsers />
+    <ListUsers users={data.users} />
 </main>
 
 <style lang="scss">
