@@ -17,7 +17,7 @@ class PurchaseRepository(SQLAlchemyRepository):
                 session,
                 PurchaseOutDTO,
                 joins=[Purchase.store, Purchase.product]
-            )
+            ) # type: ignore
 
     async def create(self, data):
         async with async_session() as session:
@@ -43,7 +43,6 @@ class PurchaseRepository(SQLAlchemyRepository):
 
     async def _get_turnover_per_last_week_by_category(self, category: str):
         async with async_session() as session:
-            category = 'а'
             query = f"""SELECT
             date_part('week', date(supply.created_at)) as week,
             count(offer.id)
@@ -51,11 +50,13 @@ class PurchaseRepository(SQLAlchemyRepository):
             JOIN offer ON offer.supply_id = supply.id
             JOIN product ON product.id = offer.product_id
             WHERE product.category = '{category}'
-            GROUP BY week"""
-            return [{
+            GROUP BY week;"""
+            result = [{
                 'week': i[0],
                 'value': i[1]
             } for i in (await session.execute(text(query))).fetchall()]
+            print((await session.execute(text(query))).fetchall())
+            return result
 
     async def get_purches_stats(self, category: str):
         return {
