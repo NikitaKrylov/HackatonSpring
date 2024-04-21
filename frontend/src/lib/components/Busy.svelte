@@ -2,14 +2,29 @@
     export let current: number;
     export let maximum: number;
 
-    const off = "#acd2ff";
     let color: string;
-    $: if (current / maximum > 0.66) {
-        color = "#F35757";
-    } else if (current / maximum > 0.33) {
-        color = "#FFC700";
-    } else {
-        color = "#36CF1D";
+    $: color = getColor(current, maximum)
+    const off = "#acd2ff";
+</script>
+
+<script lang="ts" context="module">
+    export function getColor(cur: number, max: number) {
+        if (cur / max > 0.66) {
+            return "#F35757";
+        } else if (cur / max > 0.33) {
+            return "#FFC700";
+        } else {
+            return "#36CF1D";
+        }
+    }
+    export function getColorBack(cur: number, max: number) {
+        if (cur / max > 0.66) {
+            return "#FEEEEE";
+        } else if (cur / max > 0.33) {
+            return "#FFF9E5";
+        } else {
+            return "#E4F8E6";
+        }
     }
 </script>
 

@@ -1,4 +1,6 @@
-<script lang="ts"></script>
+<script lang="ts">
+    
+</script>
 
 <section>
     <select name="" id="">
