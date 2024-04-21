@@ -1,3 +1,4 @@
+import { fetchJSON } from "$lib/fetch";
 import type { Placement } from "./placement";
 import type { Product } from "./product";
 
@@ -10,3 +11,7 @@ export type Offer = {
     product: Product;
     placement: Placement;
 };
+
+export async function fetchOffers(): Promise<Offer[]> {
+    return fetchJSON<Offer[]>("/offers").then(x => x.data);
+}
