@@ -4,11 +4,10 @@
 
 https://hack.clayenkitten.ru/dashboard
 
-### Данные дл входа
+### Данные для входа
 
 Login: admin@gmail.com
 Password: 1234
-
 
 ## Схема базы данных
 
