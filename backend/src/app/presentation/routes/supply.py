@@ -12,7 +12,10 @@ _supply_repository = SupplyRepository()
 
 @router.get('', response_model=list[SupplyOutDTO])
 async def get_all_supplies(filter_data: SupplyFilter = Depends(SupplyFilter)):
-    return await _supply_repository.get_all()
+    supplies = await _supply_repository.get_all()
+    for supply in supplies:
+        supply.storage.coord = list(reversed([float(coord) for coord in supply.storage.coord[1:-1].split(',')])) # type: ignore
+    return supplies
 
 
 @router.get('/{id}', response_model=SupplyOutDTO)

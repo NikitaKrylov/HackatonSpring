@@ -1,6 +1,7 @@
 
 from datetime import datetime
 
+from matplotlib.pylab import f
 from pydantic import BaseModel
 
 from app.persistence.sqlalc_models import SupplyStatus
@@ -58,7 +59,7 @@ class SimplePlacementOutDTO(BaseModel):
     address: str
     name: str
     id: int
-    coord: str
+    coord: str | list[float] | list[str]
     placement_type: str
 
 class SupplyOutDTO(BaseModel):

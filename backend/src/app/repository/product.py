@@ -14,7 +14,7 @@ class ProductRepository(SQLAlchemyRepository):
                 filter_data,
                 session,
                 ProductOutDTO
-            )
+            ) # type: ignore
 
     async def create(self, data: ProductCreateDTO) -> ProductOutDTO:
         async with async_session() as session:
@@ -22,7 +22,7 @@ class ProductRepository(SQLAlchemyRepository):
                 session,
                 data,
                 ProductOutDTO
-            )
+            ) # type: ignore
 
     async def create_all(self, data: list[ProductCreateDTO]):
         async with async_session() as session:
