@@ -38,6 +38,7 @@ class Role(Base):
     #TODO добавить чекбоксы с разрешениями
 
 
+
 class Product(Base):
     __tablename__ = 'product'
 

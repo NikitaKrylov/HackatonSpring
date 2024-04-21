@@ -1,7 +1,7 @@
+from app.persistence.sqlalc_models import Role
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
-from app.persistence.sqlalc_models import Role
-from app.schemas.user import RoleOutDTO, RoleCreateDTO, RoleChangeDTO
+from app.schemas.user import RoleChangeDTO, RoleCreateDTO, RoleOutDTO
 
 
 class RoleRepository(SQLAlchemyRepository):
@@ -10,6 +10,7 @@ class RoleRepository(SQLAlchemyRepository):
     async def get_all(self) -> list[RoleOutDTO]:
         async with async_session() as session:
             return await self.get_all_objects(
+                None,
                 session,
                 RoleOutDTO
             )

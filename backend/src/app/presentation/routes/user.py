@@ -18,10 +18,13 @@ router = APIRouter(prefix="/users")
 user_repository = UserRepository()
 
 
-@router.get('', response_model=list[UserOutDTO])
+@router.get('', response_model=list[UserOutWithRoleDTO])
 async def get_all_users():
     return await user_repository.get_all()
 
+@router.delete('/{user_id}')
+async def delete_user(user_id: int):
+    await user_repository.delete(user_id)
 
 @router.post('/login', response_model=Token)
 async def login_user(login_form: OAuth2PasswordRequestForm = Depends()):

@@ -1,5 +1,7 @@
 from typing import Type
 
+from sqlalchemy import delete
+
 from app.persistence.sqlalc_models import User
 from app.repository.pg_repository import async_session
 from app.repository.sqlalchemy_repository import SQLAlchemyRepository
@@ -62,6 +64,12 @@ class UserRepository(SQLAlchemyRepository):
             return await self.get_all_objects(
                 None,
                 session,
-                UserOutDTO
+                UserOutWithRoleDTO,
+                joins=[User.role]
             )
 
+    async def delete(self, user_id: int):
+        async with async_session() as session:
+            stmp = delete(self.model).where(self.model.id == user_id)
+            await session.execute(stmp)
+            await session.commit()
