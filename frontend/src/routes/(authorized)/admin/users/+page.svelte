@@ -38,7 +38,7 @@
                     <span>{user.last_name} {user.first_name} {user.middle_name}</span>
                 </p>
                 <p>{user.id}</p>
-                <select bind:value={user.role.id} on:change={() => {}}>
+                <select bind:value={user.role.id} on:change={() => setUserRole(user.id, user.role.id)}>
                     {#each data.roles as role}
                         <option value={role.id}>{role.name}</option>
                     {/each}
