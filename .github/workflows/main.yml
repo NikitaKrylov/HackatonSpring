@@ -19,4 +19,4 @@ jobs:
           script: |
             cd ${{ secrets.PROJECT_DIR }}
             git pull origin main
-            # docker compose up --build -d
+            docker compose up --build -d
